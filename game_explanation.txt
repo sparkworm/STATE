@@ -1,0 +1,15 @@
+S.T.A.T.E.: Subjagation, Tyranny, Atrocity:  Totality Enforced
+
+A rogue citizen is pushed too far by the government, and tired of the mindless
+drivel poured out by the democratically elected politicians, decides to take
+matters into his own hands.
+
+Core Elements:
+	Fast-paced top-down shooter in the same sense as Hotline Miami
+	Targets bureaucrats, politicians, and corporations working with the government
+
+Shooting:
+	Fast projectiles (no bullet hell)
+	Very short TTK (maybe not always one shot, but close)
+	Grabbing weapons from fallen enemies will be possible, but the player may
+		also reload their weapon
