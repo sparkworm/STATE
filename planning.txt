@@ -1,0 +1,55 @@
+Character Structure:
+	Hitbox
+	Body (several seperate elements)
+		Head
+			NPC: Looks back and forth when guarding.  Otherwise faces direction
+				of movement
+			Player: Looks wherever mouse is
+		Torso
+			NPC: Always faces direction of movement
+			Player: Always faces mouse
+		Arms - switch sprites depending on the held item
+		Legs - typically not visible unless movement is occurring
+	Item (probably weapon)
+	HealthComponent: handle damage, wound, and death
+		health
+		max_health
+	MoveComponent: handle accel/deccel, and max speed
+		velocity
+		max_speed
+		accel
+		deccel
+	AimComponent: handle natural inaccuracy and recoil.  Sustained recoil results in worse accuracy
+			as does moving while firing
+		offset
+		stability
+	Controller (contains signals controlling Character)
+		NPC: State machine
+		Player: Input handler
+
+Enemy State Machine
+	Guarding: Head looks back and forth, and with it a detection cone.
+		Exit:
+			player spotted: Enter attacking or investigating, depending on length of spot
+			sound heard: Enter Investigating
+	Patrolling: Head looks back and forth while walking along a set path
+		Exit:
+			player spotted: Enter attacking or investigating, depending on length of spot
+			sound heard: Enter Investigating
+	Investigating: Pathfinding to investigate a sound or potential player
+		Exit:
+			arrival to target and timer timeout: return to original Guarding location.
+			Player found: Enter Attacking
+	Attacking: Moves to be within range of Player, then fire
+		Exit:
+			Player not in LOS: Investigate the last known position of the player
+
+Unarmed State Machine
+	Wander: Slowly move from one random point to another (may need revision)
+		Exit: Gunfire heard.  Enter Cowaring state
+	Fleeign: Move to a position further from the threat, or possibly the exit
+		Exit:
+			position reached: enter cowering
+			exit reached: despawn
+	Cowaring: stay still until a threat is seen
+		Exit: Enter Fleeing
