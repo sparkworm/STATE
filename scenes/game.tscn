@@ -8,6 +8,7 @@
 script = ExtResource("1_uwrxv")
 
 [node name="ActiveScene" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
 [node name="MainMenu" parent="ActiveScene" instance=ExtResource("2_yqjtg")]
 
