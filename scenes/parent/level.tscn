@@ -10,6 +10,7 @@
 script = ExtResource("2_orcmj")
 
 [node name="FloorTiles" type="TileMapLayer" parent="." index="0"]
+position = Vector2(8, 8)
 tile_set = ExtResource("3_7gmcl")
 
 [node name="WallTiles" type="TileMapLayer" parent="." index="1"]
