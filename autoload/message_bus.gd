@@ -1,5 +1,7 @@
 extends Node
 
+@warning_ignore_start("unused_signal")
+
 ## Called to make Game switch the ActiveScene
 signal scene_changed(new_scene: SceneAccess.IDX)
 
