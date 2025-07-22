@@ -1,22 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0gbvf0b4eiq4"]
+[gd_scene load_steps=4 format=3 uid="uid://d0gbvf0b4eiq4"]
 
 [ext_resource type="PackedScene" uid="uid://bou5t0p158o7h" path="res://scenes/parent/character.tscn" id="1_rp718"]
-[ext_resource type="Texture2D" uid="uid://d0gk2kblt6qpi" path="res://textures/character/head_1.png" id="2_atpat"]
+[ext_resource type="PackedScene" uid="uid://clg4816pvwavy" path="res://scenes/characters/bodies/test_body.tscn" id="2_76oj4"]
 [ext_resource type="Script" uid="uid://ccjbrtvt28wdc" path="res://scenes/characters/player_controller.gd" id="2_yewv4"]
-[ext_resource type="Texture2D" uid="uid://drgyodho8wjm6" path="res://textures/character/shoulders_1.png" id="3_kqtwu"]
-[ext_resource type="Texture2D" uid="uid://dgey3cy1dkivx" path="res://textures/character/arms_1.png" id="4_6eyoc"]
 
 [node name="Player" instance=ExtResource("1_rp718")]
 
-[node name="Torso" parent="Body" index="1"]
-texture = ExtResource("3_kqtwu")
+[node name="Body" parent="." index="0" instance=ExtResource("2_76oj4")]
 
-[node name="Arms" parent="Body/Torso" index="0"]
-position = Vector2(0, -1)
-texture = ExtResource("4_6eyoc")
-
-[node name="Head" parent="Body" index="2"]
-texture = ExtResource("2_atpat")
-
-[node name="Controller" parent="." index="1"]
+[node name="Controller" parent="." index="1" node_paths=PackedStringArray("player", "body")]
 script = ExtResource("2_yewv4")
+player = NodePath("..")
+body = NodePath("../Body")

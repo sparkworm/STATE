@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://clg4816pvwavy"]
+
+[ext_resource type="PackedScene" uid="uid://cmvnw0ja1kl6o" path="res://scenes/components/body.tscn" id="1_fvrdt"]
+[ext_resource type="Texture2D" uid="uid://drgyodho8wjm6" path="res://textures/character/shoulders_1.png" id="2_pha0c"]
+[ext_resource type="Texture2D" uid="uid://dgey3cy1dkivx" path="res://textures/character/arms_1.png" id="3_jn6e8"]
+[ext_resource type="Texture2D" uid="uid://d0gk2kblt6qpi" path="res://textures/character/head_1.png" id="4_5cd1o"]
+
+[node name="Body" instance=ExtResource("1_fvrdt")]
+
+[node name="Torso" parent="." index="1"]
+texture = ExtResource("2_pha0c")
+
+[node name="Arms" parent="Torso" index="0"]
+position = Vector2(1, 0)
+texture = ExtResource("3_jn6e8")
+
+[node name="Head" parent="." index="2"]
+texture = ExtResource("4_5cd1o")

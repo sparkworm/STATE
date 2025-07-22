@@ -6,16 +6,6 @@
 motion_mode = 1
 script = ExtResource("1_2rq4q")
 
-[node name="Body" type="Node2D" parent="."]
-
-[node name="Legs" type="Sprite2D" parent="Body"]
-
-[node name="Torso" type="Sprite2D" parent="Body"]
-
-[node name="Arms" type="Sprite2D" parent="Body/Torso"]
-
-[node name="Head" type="Sprite2D" parent="Body"]
-
 [node name="Controller" type="Node" parent="."]
 
 [node name="ItemHeld" type="Node2D" parent="."]

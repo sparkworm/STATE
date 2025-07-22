@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmvnw0ja1kl6o"]
+
+[ext_resource type="Script" uid="uid://bsrw0qs77aq7d" path="res://scenes/components/body.gd" id="1_rwg26"]
+
+[node name="Body" type="Node2D"]
+script = ExtResource("1_rwg26")
+
+[node name="Legs" type="Sprite2D" parent="."]
+
+[node name="Torso" type="Sprite2D" parent="."]
+
+[node name="Arms" type="Sprite2D" parent="Torso"]
+
+[node name="Head" type="Sprite2D" parent="."]
