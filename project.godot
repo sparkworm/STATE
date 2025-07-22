@@ -21,6 +21,11 @@ MessageBus="*res://autoload/message_bus.gd"
 Globals="*res://autoload/globals.gd"
 SceneAccess="*res://autoload/scene_access.gd"
 
+[display]
+
+window/size/mode=4
+window/stretch/mode="canvas_items"
+
 [input]
 
 pause={
