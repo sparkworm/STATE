@@ -1,7 +1,5 @@
 extends Control
 
-
-
 func _on_b_resume_pressed() -> void:
 	MessageBus.pause_menu_toggled.emit()
 

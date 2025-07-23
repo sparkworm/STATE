@@ -27,6 +27,7 @@ tile_set = ExtResource("3_7gmcl")
 [node name="Player" parent="Characters" index="0" instance=ExtResource("4_ajmd0")]
 
 [node name="Camera" type="Camera2D" parent="." index="6" node_paths=PackedStringArray("subject")]
+process_mode = 3
 zoom = Vector2(3, 3)
 script = ExtResource("5_l560t")
 subject = NodePath("../Characters/Player")
