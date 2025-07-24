@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://chtlh5bcsbnmt"]
+
+[ext_resource type="Script" uid="uid://crxl546m1gimt" path="res://scenes/effects/bullet_trail.gd" id="1_tgism"]
+
+[sub_resource type="Curve" id="Curve_tgism"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.974839), -2.45275, -2.45275, 0, 0, Vector2(1, 0.882581), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="BulletTrail" type="Line2D"]
+width = 1.0
+width_curve = SubResource("Curve_tgism")
+default_color = Color(1, 0.886275, 0.490196, 1)
+script = ExtResource("1_tgism")

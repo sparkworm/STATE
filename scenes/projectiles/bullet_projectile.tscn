@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://dalg4ggflt5ee"]
+
+[ext_resource type="PackedScene" uid="uid://cy3vexrcwyf5s" path="res://scenes/parent/projectile.tscn" id="1_v4hmp"]
+[ext_resource type="Script" uid="uid://dp2h835mqpq8s" path="res://scenes/projectiles/bullet_projectile.gd" id="2_pfba5"]
+[ext_resource type="PackedScene" uid="uid://chtlh5bcsbnmt" path="res://scenes/effects/bullet_trail.tscn" id="3_tclso"]
+
+[node name="BulletProjectile" instance=ExtResource("1_v4hmp")]
+script = ExtResource("2_pfba5")
+trail_points = 10
+bullet_trail = ExtResource("3_tclso")
+
+[node name="RayCast" type="RayCast2D" parent="." index="0"]

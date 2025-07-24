@@ -8,3 +8,7 @@ signal scene_changed(new_scene: SceneAccess.IDX)
 signal pause_menu_toggled()
 
 signal game_quit()
+
+signal projectile_spawned(proj: Projectile)
+
+signal effect_spawned(eff: Node2D)

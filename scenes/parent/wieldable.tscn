@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://uc3yff5o4wrj"]
+
+[ext_resource type="Script" uid="uid://erqmloxtsrv2" path="res://scenes/parent/wieldable.gd" id="1_cbkg2"]
+
+[node name="Wieldable" type="Node2D"]
+script = ExtResource("1_cbkg2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

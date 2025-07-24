@@ -8,4 +8,4 @@ script = ExtResource("1_2rq4q")
 
 [node name="Controller" type="Node" parent="."]
 
-[node name="ItemHeld" type="Node2D" parent="."]
+[node name="ItemHolder" type="Node2D" parent="."]

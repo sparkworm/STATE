@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://yjdw204qc7vl"]
+
+[ext_resource type="PackedScene" uid="uid://uc3yff5o4wrj" path="res://scenes/parent/wieldable.tscn" id="1_fildt"]
+[ext_resource type="Script" uid="uid://bjlllyklexkiy" path="res://scenes/wieldable/wieldable_gun.gd" id="2_m0oiv"]
+[ext_resource type="Texture2D" uid="uid://86kwj13vjqbv" path="res://textures/weapon/top_revolver.png" id="2_opxsl"]
+[ext_resource type="PackedScene" uid="uid://bojnc2n83qeek" path="res://scenes/components/cpt_ammo.tscn" id="3_fso6p"]
+[ext_resource type="PackedScene" uid="uid://bfo6vtny5gu3" path="res://scenes/components/projectile_spawner.tscn" id="4_itqt0"]
+[ext_resource type="PackedScene" uid="uid://dalg4ggflt5ee" path="res://scenes/projectiles/bullet_projectile.tscn" id="5_en525"]
+
+[node name="Revolver" node_paths=PackedStringArray("proj_spawner", "cpt_ammo") instance=ExtResource("1_fildt")]
+script = ExtResource("2_m0oiv")
+proj_spawner = NodePath("ProjectileSpawner")
+cpt_ammo = NodePath("CptAmmo")
+item_name = "Revolver"
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(3, -0.5)
+texture = ExtResource("2_opxsl")
+
+[node name="CptAmmo" parent="." index="1" instance=ExtResource("3_fso6p")]
+ammo = 6
+round_cap = 6
+
+[node name="ProjectileSpawner" parent="." index="2" instance=ExtResource("4_itqt0")]
+position = Vector2(8, 0)
+projectile_scene = ExtResource("5_en525")
+damage = 50.0
+speed = 300.0
