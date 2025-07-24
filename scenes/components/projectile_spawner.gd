@@ -5,8 +5,10 @@ extends Node2D
 @export var projectile_scene: PackedScene
 
 @export_category("Projectile attributes")
+## The damage that the projectile will deal to what it hits
 @export var damage: float
-@export var speed: float
+## Speed at which the projectile will travel
+@export var speed: float = 500
 
 func spawn_projectile(dir: Vector2) -> void:
 	var new_proj: Projectile = projectile_scene.instantiate()

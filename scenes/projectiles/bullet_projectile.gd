@@ -21,5 +21,7 @@ func _physics_process(delta: float) -> void:
 	if ray_cast.is_colliding():
 		handle_collision(ray_cast.get_collider())
 
+## NOTE: Will need to make sure to get the LAST of all raycast collisions since
+## the raycast is being sent backwards
 func handle_collision(col: Object) -> void:
 	pass
