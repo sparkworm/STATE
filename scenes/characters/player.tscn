@@ -6,15 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://ditjko8fp0fog" path="res://scenes/wieldable/revolver.tscn" id="4_atpat"]
 [ext_resource type="PackedScene" uid="uid://r0wwnjn5bab" path="res://scenes/components/cpt_velocity.tscn" id="4_dyp2m"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_atpat"]
-radius = 8.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_atpat"]
+radius = 5.0
+height = 16.0
 
 [node name="Player" node_paths=PackedStringArray("body") instance=ExtResource("1_rp718")]
 starting_item = ExtResource("4_atpat")
 body = NodePath("Body")
 
 [node name="MoveCollision" type="CollisionShape2D" parent="." index="0"]
-shape = SubResource("CircleShape2D_atpat")
+shape = SubResource("CapsuleShape2D_atpat")
 
 [node name="Body" parent="." index="1" instance=ExtResource("2_76oj4")]
 

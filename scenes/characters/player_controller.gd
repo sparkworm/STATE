@@ -9,6 +9,7 @@ var move_dir: Vector2
 
 func _physics_process(delta: float) -> void:
 	body.head_and_torso_look_towards(body.get_global_mouse_position())
+	$"../MoveCollision".rotation = body.torso.rotation
 	handle_movement(delta)
 
 	if Input.is_action_just_pressed("fire"):
