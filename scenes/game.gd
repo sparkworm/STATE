@@ -20,6 +20,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func switch_scene(scene_idx: SceneAccess.IDX) -> void:
 	Globals.current_scene_idx = scene_idx
 	# end current scene
+	active_scene_holder.get_child(0).queue_free()
 	active_scene_holder.remove_child(active_scene_holder.get_child(0))
 	var new_scene: PackedScene = SceneAccess.dict.get(scene_idx)
 	# add new scene
