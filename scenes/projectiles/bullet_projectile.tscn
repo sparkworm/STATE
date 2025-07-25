@@ -10,3 +10,4 @@ trail_points = 10
 bullet_trail = ExtResource("3_tclso")
 
 [node name="RayCast" type="RayCast2D" parent="." index="0"]
+target_position = Vector2(0, 0)
