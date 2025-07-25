@@ -13,6 +13,6 @@ bullet_trail = ExtResource("3_tclso")
 target_position = Vector2(0, 0)
 
 [node name="TimerTermination" type="Timer" parent="." index="1"]
-wait_time = 5.0
+wait_time = 500000.0
 
 [connection signal="timeout" from="TimerTermination" to="." method="_on_timer_termination_timeout"]
