@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://tih2ouwvuyvd"]
+
+[ext_resource type="Texture2D" uid="uid://chvh6n2jk7qbb" path="res://textures/vfx/decals_sheet.png" id="1_02nqv"]
+
+[node name="BloodDecal" type="Sprite2D"]
+texture = ExtResource("1_02nqv")
+hframes = 10

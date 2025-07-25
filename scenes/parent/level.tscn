@@ -22,6 +22,9 @@ tile_set = ExtResource("3_7gmcl")
 
 [node name="Decals" type="Node2D" parent="." index="4"]
 
+[node name="BloodLayer" type="Node2D" parent="Decals" index="0"]
+modulate = Color(0.835718, 1.8049e-06, 1.92523e-07, 0.784314)
+
 [node name="Effects" type="Node2D" parent="." index="5"]
 
 [node name="Characters" type="Node2D" parent="." index="6"]

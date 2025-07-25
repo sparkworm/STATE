@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=4 uid="uid://dpv7q5qho85yi"]
+[gd_scene load_steps=3 format=4 uid="uid://dpv7q5qho85yi"]
 
 [ext_resource type="PackedScene" uid="uid://sxyrpr61lxuf" path="res://scenes/parent/level.tscn" id="1_jbqir"]
+[ext_resource type="PackedScene" uid="uid://tih2ouwvuyvd" path="res://scenes/effects/blood_decal.tscn" id="2_yautc"]
 
 [node name="TestLevel" instance=ExtResource("1_jbqir")]
 
@@ -9,3 +10,20 @@ tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAAAAAAAAAAAAAAAAAD//wAAAAABAAA
 
 [node name="WallTiles" parent="." index="1"]
 tile_map_data = PackedByteArray("AAAFAPz/AAANAAAAAAAFAPv/AAAOAAEAAAAEAPv/AAAOAAAAAAAFAP3/AAANAAAAAAAFAP7/AAANAAAAAAAFAP//AAANAAAAAAAFAAAAAAANAAAAAAA=")
+
+[node name="BloodLayer" type="Node2D" parent="Decals" index="0"]
+modulate = Color(0.835718, 1.8049e-06, 1.92523e-07, 0.784314)
+
+[node name="BloodDecal" parent="Decals/BloodLayer" index="0" instance=ExtResource("2_yautc")]
+frame = 1
+
+[node name="BloodDecal2" parent="Decals/BloodLayer" index="1" instance=ExtResource("2_yautc")]
+position = Vector2(34, 7)
+
+[node name="BloodDecal3" parent="Decals/BloodLayer" index="2" instance=ExtResource("2_yautc")]
+position = Vector2(19, 16)
+rotation = -0.56174
+frame = 3
+
+[node name="BloodDecal4" parent="Decals/BloodLayer" index="3" instance=ExtResource("2_yautc")]
+position = Vector2(-12, 11)
