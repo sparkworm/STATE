@@ -7,8 +7,10 @@ extends Projectile
 var old_position: Vector2
 
 @onready var ray_cast: RayCast2D = $RayCast
+@onready var termination_timer: Timer = $TimerTermination
 
 func _ready() -> void:
+	termination_timer.start()
 	var trail: BulletTrail = bullet_trail.instantiate()
 	trail.max_points = trail_points
 	trail.bullet = self
@@ -25,3 +27,6 @@ func _physics_process(delta: float) -> void:
 ## the raycast is being sent backwards
 func handle_collision(col: Object) -> void:
 	pass
+
+func _on_timer_termination_timeout() -> void:
+	queue_free()
