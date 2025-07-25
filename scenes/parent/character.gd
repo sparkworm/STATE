@@ -7,7 +7,8 @@ extends CharacterBody2D
 @onready var item_holder: Node2D = $ItemHolder
 
 func _ready() -> void:
-	body.set_item_held(starting_item.instantiate())
+	if starting_item != null:
+		body.set_item_held(starting_item.instantiate())
 
 func get_item_held() -> Wieldable:
 	return body.get_item_held()

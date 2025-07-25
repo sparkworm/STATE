@@ -6,6 +6,9 @@ extends Node
 @export var ammo: int
 ## The number of rounds that can be put in the weapon if relaoded one round at a time.
 ## Think of revolvers and guns with tubes.
+## [br][br]
+## The default value of one represents how most guns could hold a single round if placed
+## directly in the chamber.
 @export var round_cap: int = 1
 
 func has_ammo() -> bool:

@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://c58txqxqr8dq5"]
+
+[ext_resource type="Script" uid="uid://bjlllyklexkiy" path="res://scenes/parent/wieldable_gun.gd" id="1_gdnv4"]
+[ext_resource type="PackedScene" uid="uid://bfo6vtny5gu3" path="res://scenes/components/projectile_spawner.tscn" id="2_n4qx1"]
+[ext_resource type="PackedScene" uid="uid://bojnc2n83qeek" path="res://scenes/components/cpt_ammo.tscn" id="3_jirk3"]
+[ext_resource type="PackedScene" uid="uid://dalg4ggflt5ee" path="res://scenes/projectiles/bullet_projectile.tscn" id="3_wdvvu"]
+[ext_resource type="Texture2D" uid="uid://86kwj13vjqbv" path="res://textures/weapon/top_revolver.png" id="5_3hrcg"]
+
+[node name="WieldableGun" type="Node2D" node_paths=PackedStringArray("proj_spawner", "cpt_ammo", "fire_timer", "reload_timer")]
+script = ExtResource("1_gdnv4")
+proj_spawner = NodePath("ProjectileSpawner")
+cpt_ammo = NodePath("CptAmmo")
+fire_timer = NodePath("TimerFire")
+reload_timer = NodePath("TimerReload")
+
+[node name="ProjectileSpawner" parent="." instance=ExtResource("2_n4qx1")]
+position = Vector2(9, 0)
+projectile_scene = ExtResource("3_wdvvu")
+
+[node name="CptAmmo" parent="." instance=ExtResource("3_jirk3")]
+
+[node name="TimerFire" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="TimerReload" type="Timer" parent="."]
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, -0.5)
+texture = ExtResource("5_3hrcg")

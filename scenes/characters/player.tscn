@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bou5t0p158o7h" path="res://scenes/parent/character.tscn" id="1_rp718"]
 [ext_resource type="PackedScene" uid="uid://clg4816pvwavy" path="res://scenes/characters/bodies/test_body.tscn" id="2_76oj4"]
 [ext_resource type="Script" uid="uid://ccjbrtvt28wdc" path="res://scenes/characters/player_controller.gd" id="2_yewv4"]
-[ext_resource type="PackedScene" uid="uid://yjdw204qc7vl" path="res://scenes/wieldable/revolver.tscn" id="4_atpat"]
+[ext_resource type="PackedScene" uid="uid://ditjko8fp0fog" path="res://scenes/wieldable/revolver.tscn" id="4_atpat"]
 [ext_resource type="PackedScene" uid="uid://r0wwnjn5bab" path="res://scenes/components/cpt_velocity.tscn" id="4_dyp2m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_76oj4"]
