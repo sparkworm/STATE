@@ -15,4 +15,4 @@ func follow_subject() -> void:
 	position = subject.position
 
 func apply_offset() -> void:
-	offset = (get_local_mouse_position()-get_screen_center_position()) * look_strength
+	offset = (get_global_mouse_position()-get_screen_center_position()) * look_strength

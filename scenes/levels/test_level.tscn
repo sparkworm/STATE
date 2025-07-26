@@ -11,7 +11,7 @@ tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAAAAAAAAAAAAAAAAAD//wAAAAABAAA
 [node name="WallTiles" parent="." index="1"]
 tile_map_data = PackedByteArray("AAAFAPz/AAANAAAAAAAFAPv/AAAOAAEAAAAEAPv/AAAOAAAAAAAFAP3/AAANAAAAAAAFAP7/AAANAAAAAAAFAP//AAANAAAAAAAFAAAAAAANAAAAAAA=")
 
-[node name="BloodLayer" type="Node2D" parent="Decals" index="0"]
+[node name="BloodLayer2" type="Node2D" parent="Decals" index="0"]
 modulate = Color(0.835718, 1.8049e-06, 1.92523e-07, 0.784314)
 
 [node name="BloodDecal" parent="Decals/BloodLayer" index="0" instance=ExtResource("2_yautc")]
