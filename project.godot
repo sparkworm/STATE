@@ -25,6 +25,10 @@ SceneAccess="*res://autoload/scene_access.gd"
 
 window/stretch/mode="canvas_items"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/project_time/plugin.cfg")
+
 [input]
 
 pause={
