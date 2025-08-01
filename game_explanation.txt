@@ -72,3 +72,32 @@ Story of STATE (transcribed from notebook)
 
 	"To lighten moods following these disturbing events, your compassionate and empathetic
 	government will be raising universal income by another $100 per minute."
+
+Political Commentary
+	The Cathedral:
+		"Experts agree"
+		"The state has fact-checked this message"
+		"The science agrees"
+		"...an expert with a degree in being correct"
+	The Economy:
+		"The rich found to be to blame for even more of your problems"
+		"The productive classes are taking your opportunities."
+		"Remember that wealth is zero-sum"
+		"When One Has Plenty, All Have Less"
+		“Justice Is Redistribution. Security Is Surveillance.”
+		“Private Ownership Is Violence. State Ownership Is Peace.”
+		“Profit Is Theft."
+		"We have your best interests at heart."
+		“Citizen Arrested for Unregulated Productivity—possibly profiting for himself”
+		“Only the State Can Be Trusted to Allocate Fairly.”
+	Democracy:
+		"Voting age lowered to 8, allowing more people than ever to express their right to vote"
+		"The increase in voters following the nationalization of foreign citizens has lead to
+			unprecidented levels of democracy as more can vote than ever before."
+		"True Equity Requires Unequal Treatment"
+		"Historical Imbalance Demands Present Sacrifice"
+	Immigration:
+		“Diversity Is Strength. Uniformity Is Terror.”
+		“A Bigger Electorate Is a Healthier Democracy.”
+		“National Identity Is a Myth of the Privileged.”
+		"Homogenity is a threat to our democracy"
