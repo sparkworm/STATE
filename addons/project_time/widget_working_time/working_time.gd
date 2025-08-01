@@ -642,3 +642,11 @@ func _generate_report() -> void:
 		file.close()
 		EditorInterface.get_resource_filesystem().scan()
 		OS.shell_open(ProjectSettings.globalize_path(REPORT_PATH))
+
+
+## Function created by Sparkworm to allow saving of data without restarting project.
+## Useful if you want to commit time spent alongside a commit, allowing you to see how long a
+## given commit took.
+func _on_save_button_pressed() -> void:
+	_save_time_data()
+	save_data(_time_sections, DATA_PATH)
