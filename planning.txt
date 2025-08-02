@@ -53,3 +53,42 @@ Unarmed State Machine
 			exit reached: despawn
 	Cowaring: stay still until a threat is seen
 		Exit: Enter Fleeing
+
+Weapon Breakdown
+	damage
+		-amount of damage applied by bullet
+	bullet speed
+		-velocity of bullets
+
+	weapon type
+		-enum naming weapon # may need revision!!!
+	ammo type
+		-enum naming weapon ammo type # may need revision!!!
+
+
+	fire time
+		-time before weapon can be fired again
+	reload time
+		-sets time that weapon can't fire while reloading
+		-an animation could eventually be implemented
+
+	base_inaccuracy
+		-affects weapon sway when not moving
+		-by swaying the weapon, inaccuracy can be achieved without making bullets come out of the
+		barrel at strange angles
+	move_inaccuarcy_coefficient
+		-affects weapon sway when moving
+		-true_inaccuracy = base inaccuracy + velocity/max_velocity * move_inaccuarcy_coefficient
+	recoil (in degrees)
+		after a shot the weapon is rotated by this value and tweened to return to original position
+	recoil reset coefficient
+		-Pulls weapon to center faster if it is further from directly on.
+		-This prevents weapon from going ridiculously off course, because at some point the weapon
+		will move back faster than the recoil will offset it
+
+class ModifiableValue:
+	base_value: float
+	modifiers: Array[Effect]
+	value
+		get:
+			# apply modifiers to base_value
