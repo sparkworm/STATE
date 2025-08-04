@@ -1,3 +1,9 @@
+I HAVE FOUND A GLITCH IN GODOT.
+	-WHILE EDITING A TEXT FILE, A SINGLE QUOTE WILL CAUSE ALL FUTURE TEXT TO FAIL
+	TO PROPELY COLLAPSE WITH SIDE DOWN ARROWS
+	-THIS IS LIKELY DUE TO THE FACT THAT WHEN EDITING A GDSCRIPT FILE, SUCH A QUOTE
+	WOULD INDICATE THE BEGINNING OF A STRING, BUT IN A TEXT FILE SUCH A THING IS NOT WANTED
+
 Character Structure:
 	Hitbox
 	Body (several seperate elements)
@@ -47,14 +53,21 @@ Enemy State Machine
 Unarmed State Machine
 	Wander: Slowly move from one random point to another (may need revision)
 		Exit: Gunfire heard.  Enter Cowaring state
-	Fleeign: Move to a position further from the threat, or possibly the exit
+	Fleeing: Move to a position further from the threat, or possibly the exit
 		Exit:
 			position reached: enter cowering
 			exit reached: despawn
 	Cowaring: stay still until a threat is seen
 		Exit: Enter Fleeing
 
-Weapon Breakdown
+Class ModifiableValue:
+	base_value: float
+	modifiers: Array[Effect]
+	value
+		get:
+			# apply modifiers to base_value
+
+Weapon Breakdown:
 	damage
 		-amount of damage applied by bullet
 	bullet speed
@@ -65,12 +78,11 @@ Weapon Breakdown
 	ammo type
 		-enum naming weapon ammo type # may need revision!!!
 
-
 	fire time
 		-time before weapon can be fired again
-	reload time
-		-sets time that weapon can't fire while reloading
-		-an animation could eventually be implemented
+	reload timer:
+		sets time that the weapon cannot fire while reloading
+
 
 	base_inaccuracy
 		-affects weapon sway when not moving
@@ -86,9 +98,23 @@ Weapon Breakdown
 		-This prevents weapon from going ridiculously off course, because at some point the weapon
 		will move back faster than the recoil will offset it
 
-class ModifiableValue:
-	base_value: float
-	modifiers: Array[Effect]
-	value
-		get:
-			# apply modifiers to base_value
+
+Level planning:
+	Levels:
+		Politicians (in their houses, at meetings, in congress)
+		Bureaucrats
+		IRS
+		FBI
+		CIA
+		ATF
+		USPTO (US Patent and Trademark Office)
+		The President
+	In order:
+		Tutorial:
+			-Department of Homeland Security detects that there are signs of life on an
+			abandoned piece of property, despite no record of anyone living there: a raid is
+			deployed.
+			-Player quickly grabs weapons and fights off raid while hiding identity with a mask
+		1:
+
+		2:
