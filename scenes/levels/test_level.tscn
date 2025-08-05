@@ -19,6 +19,7 @@ frame = 1
 
 [node name="BloodDecal2" parent="Decals/BloodLayer" index="1" instance=ExtResource("2_yautc")]
 position = Vector2(34, 7)
+rotation = -1.01663
 
 [node name="BloodDecal3" parent="Decals/BloodLayer" index="2" instance=ExtResource("2_yautc")]
 position = Vector2(19, 16)
