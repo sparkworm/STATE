@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0gbvf0b4eiq4"]
+[gd_scene load_steps=6 format=3 uid="uid://d0gbvf0b4eiq4"]
 
 [ext_resource type="PackedScene" uid="uid://bou5t0p158o7h" path="res://scenes/parent/character.tscn" id="1_rp718"]
 [ext_resource type="PackedScene" uid="uid://clg4816pvwavy" path="res://scenes/characters/bodies/test_body.tscn" id="2_76oj4"]
 [ext_resource type="Script" uid="uid://ccjbrtvt28wdc" path="res://scenes/characters/player_controller.gd" id="2_yewv4"]
-[ext_resource type="PackedScene" uid="uid://ditjko8fp0fog" path="res://scenes/wieldable/revolver.tscn" id="4_atpat"]
 [ext_resource type="PackedScene" uid="uid://r0wwnjn5bab" path="res://scenes/components/cpt_velocity.tscn" id="4_dyp2m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_atpat"]
@@ -11,7 +10,6 @@ radius = 5.0
 height = 16.0
 
 [node name="Player" node_paths=PackedStringArray("body") instance=ExtResource("1_rp718")]
-starting_item = ExtResource("4_atpat")
 body = NodePath("Body")
 
 [node name="MoveCollision" type="CollisionShape2D" parent="." index="0"]
@@ -29,3 +27,8 @@ cpt_velocity = NodePath("../CptVelocity")
 max_speed = 120.0
 acceleration = 500.0
 decel = 250.0
+
+[node name="Inventory" parent="." index="5"]
+individual_ammo = Dictionary[int, int]({
+2: 6
+})

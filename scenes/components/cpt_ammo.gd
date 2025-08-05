@@ -2,6 +2,9 @@ class_name CptAmmo
 extends Node
 ## Used to represent the amount of ammo held in a given weapon
 
+## The type of ammo this is currently representing
+@export var ammo_type: Globals.AmmoTypes
+
 ## The amount of ammo currently in the weapon
 @export var ammo: int
 ## The number of rounds that can be put in the weapon if relaoded one round at a time.
@@ -19,10 +22,9 @@ func decrement_ammo() -> void:
 	if ammo < 0:
 		print("WARNING: ammo is negative: ", ammo)
 
-## Represents replacing the current mag with a new one, with amnt being the amount of rounds in
-## the mag
-func mag_reload(amnt: int) -> void:
-	ammo = amnt
+## Represents replacing the current mag with a new one.
+func mag_reload(mag: Magazine) -> void:
+	ammo = mag.ammo_remaining
 
 ## Represents adding a round, such as with a shotgun or revolver
 func round_reload() -> void:

@@ -33,7 +33,7 @@ Character Structure:
 		NPC: State machine
 		Player: Input handler
 
-Enemy State Machine
+Enemy State Machine:
 	Guarding: Head looks back and forth, and with it a detection cone.
 		Exit:
 			player spotted: Enter attacking or investigating, depending on length of spot
@@ -50,7 +50,7 @@ Enemy State Machine
 		Exit:
 			Player not in LOS: Investigate the last known position of the player
 
-Unarmed State Machine
+Unarmed State Machine:
 	Wander: Slowly move from one random point to another (may need revision)
 		Exit: Gunfire heard.  Enter Cowaring state
 	Fleeing: Move to a position further from the threat, or possibly the exit

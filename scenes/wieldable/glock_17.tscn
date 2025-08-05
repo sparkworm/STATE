@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7eup1hsit4r"]
+
+[ext_resource type="PackedScene" uid="uid://c58txqxqr8dq5" path="res://scenes/parent/wieldable_gun.tscn" id="1_0flrl"]
+
+[node name="Glock17" instance=ExtResource("1_0flrl")]
+mag_reloadable = true
+item_name = "Glock 17"
+
+[node name="TimerFire" parent="." index="2"]
+wait_time = 0.1

@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://c58txqxqr8dq5" path="res://scenes/parent/wieldable_gun.tscn" id="1_fildt"]
 
 [node name="Revolver" instance=ExtResource("1_fildt")]
+ID = 2
+item_name = ".44 Magnum Revolver"
 
 [node name="CptAmmo" parent="." index="1"]
 ammo = 6
