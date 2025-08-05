@@ -14,5 +14,8 @@ texture = ExtResource("2_pha0c")
 position = Vector2(1, 0)
 texture = ExtResource("3_jn6e8")
 
+[node name="ItemHolder" parent="Torso/Arms" index="0"]
+position = Vector2(5, 0)
+
 [node name="Head" parent="." index="2"]
 texture = ExtResource("4_5cd1o")

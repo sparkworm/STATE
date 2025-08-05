@@ -11,4 +11,6 @@ script = ExtResource("1_rwg26")
 
 [node name="Arms" type="Sprite2D" parent="Torso"]
 
+[node name="ItemHolder" type="Marker2D" parent="Torso/Arms"]
+
 [node name="Head" type="Sprite2D" parent="."]

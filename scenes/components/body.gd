@@ -9,6 +9,7 @@ extends Node2D
 @onready var torso: Sprite2D = $Torso
 @onready var arms: Sprite2D = $Torso/Arms
 @onready var head: Sprite2D = $Head
+@onready var item_holder: Marker2D = $Torso/Arms/ItemHolder
 
 func _ready() -> void:
 	# convert max_head_look_angle to radians so it can be used normally
@@ -31,17 +32,17 @@ func head_and_torso_look_towards(global_coords: Vector2) -> void:
 
 func get_item_held() -> Wieldable:
 	# for potential debugging purposes
-	var child_count: int = arms.get_child_count()
+	var child_count: int = item_holder.get_child_count()
 	if child_count < 1:
 		print("WARNING: no item held")
 		return null
 	elif child_count > 1:
 		print("WARNING: multiple items held: ", child_count)
 
-	return arms.get_child(0)
+	return item_holder.get_child(0)
 
 func set_item_held(item: Wieldable) -> void:
 	# loop just to make sure all children are destroyed
-	for child in arms.get_children():
-		arms.remove_child(child)
-	arms.add_child(item)
+	for child in item_holder.get_children():
+		item_holder.remove_child(child)
+	item_holder.add_child(item)
