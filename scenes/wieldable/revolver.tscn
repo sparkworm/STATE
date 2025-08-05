@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ditjko8fp0fog"]
+[gd_scene load_steps=3 format=3 uid="uid://ditjko8fp0fog"]
 
 [ext_resource type="PackedScene" uid="uid://c58txqxqr8dq5" path="res://scenes/parent/wieldable_gun.tscn" id="1_fildt"]
+[ext_resource type="Texture2D" uid="uid://86kwj13vjqbv" path="res://textures/weapon/top_revolver.png" id="2_opxsl"]
 
 [node name="Revolver" instance=ExtResource("1_fildt")]
 ID = 2
@@ -9,3 +10,7 @@ item_name = ".44 Magnum Revolver"
 [node name="CptAmmo" parent="." index="1"]
 ammo = 6
 round_cap = 6
+
+[node name="Sprite2D" parent="." index="4"]
+position = Vector2(4, -0.5)
+texture = ExtResource("2_opxsl")
