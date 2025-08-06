@@ -16,7 +16,8 @@ signal game_quit()
 signal projectile_spawned(proj: Projectile)
 ## Called to spawn an effect in Level
 signal effect_spawned(eff: Node2D)
-
+## Called when anything that is displayed on the HUD might be changed
+## TODO: fix up (currently there are a bunch of sloppy and redundant calls to this)
 signal update_hud
 
 signal player_health_changed(new_health: float)
