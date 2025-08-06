@@ -1,37 +1,41 @@
-[gd_scene load_steps=6 format=3 uid="uid://sxyrpr61lxuf"]
+[gd_scene load_steps=7 format=3 uid="uid://sxyrpr61lxuf"]
 
 [ext_resource type="PackedScene" uid="uid://cov56madp4yu7" path="res://scenes/parent/game_scene.tscn" id="1_wddsb"]
 [ext_resource type="Script" uid="uid://mk60c016io5k" path="res://scenes/parent/level.gd" id="2_orcmj"]
 [ext_resource type="TileSet" uid="uid://d5rn3luhjcrs" path="res://scenes/parent/tileset.tres" id="3_7gmcl"]
 [ext_resource type="PackedScene" uid="uid://d0gbvf0b4eiq4" path="res://scenes/characters/player.tscn" id="4_ajmd0"]
 [ext_resource type="Script" uid="uid://dfp4it2ejbgkh" path="res://scenes/components/camera.gd" id="5_l560t"]
+[ext_resource type="PackedScene" uid="uid://cb87c01h582go" path="res://scenes/ui/hud.tscn" id="6_l560t"]
 
 [node name="Level" instance=ExtResource("1_wddsb")]
 script = ExtResource("2_orcmj")
 
-[node name="FloorTiles" type="TileMapLayer" parent="." index="0"]
+[node name="HUD" parent="." index="0" node_paths=PackedStringArray("player") instance=ExtResource("6_l560t")]
+player = NodePath("../Characters/Player")
+
+[node name="FloorTiles" type="TileMapLayer" parent="." index="1"]
 position = Vector2(8, 8)
 tile_set = ExtResource("3_7gmcl")
 
-[node name="WallTiles" type="TileMapLayer" parent="." index="1"]
+[node name="WallTiles" type="TileMapLayer" parent="." index="2"]
 tile_set = ExtResource("3_7gmcl")
 
-[node name="Projectiles" type="Node2D" parent="." index="2"]
+[node name="Projectiles" type="Node2D" parent="." index="3"]
 
-[node name="Props" type="Node2D" parent="." index="3"]
+[node name="Props" type="Node2D" parent="." index="4"]
 
-[node name="Decals" type="Node2D" parent="." index="4"]
+[node name="Decals" type="Node2D" parent="." index="5"]
 
 [node name="BloodLayer" type="Node2D" parent="Decals" index="0"]
 modulate = Color(0.835718, 1.8049e-06, 1.92523e-07, 0.784314)
 
-[node name="Effects" type="Node2D" parent="." index="5"]
+[node name="Effects" type="Node2D" parent="." index="6"]
 
-[node name="Characters" type="Node2D" parent="." index="6"]
+[node name="Characters" type="Node2D" parent="." index="7"]
 
 [node name="Player" parent="Characters" index="0" instance=ExtResource("4_ajmd0")]
 
-[node name="Camera" type="Camera2D" parent="." index="7" node_paths=PackedStringArray("subject")]
+[node name="Camera" type="Camera2D" parent="." index="8" node_paths=PackedStringArray("subject")]
 process_mode = 3
 zoom = Vector2(3, 3)
 script = ExtResource("5_l560t")

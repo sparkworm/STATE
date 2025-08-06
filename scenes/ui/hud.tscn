@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb87c01h582go"]
+
+[ext_resource type="Script" uid="uid://okmuefscj7fg" path="res://scenes/ui/hud.gd" id="1_0mwgc"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_0mwgc")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemHeldPanel" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ItemHeldLabel" type="Label" parent="Control/ItemHeldPanel"]
+layout_mode = 2
+text = "Item Held:
+Ammo in weapon:
+Ammo for weapon: "
+
+[node name="HealthBar" type="ProgressBar" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -4.0
+offset_bottom = 27.0
+grow_horizontal = 0

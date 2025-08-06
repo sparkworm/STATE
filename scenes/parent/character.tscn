@@ -9,8 +9,8 @@ motion_mode = 1
 script = ExtResource("1_2rq4q")
 starting_item = ExtResource("2_yaawu")
 
-[node name="Controller" type="Node" parent="."]
-
 [node name="ItemHolder" type="Node2D" parent="."]
 
 [node name="Inventory" parent="." instance=ExtResource("2_eo5fb")]
+
+[node name="Controller" type="Node" parent="."]

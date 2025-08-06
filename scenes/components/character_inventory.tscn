@@ -4,4 +4,3 @@
 
 [node name="CharacterInventory" type="Node"]
 script = ExtResource("1_ohpbm")
-ammo = null
