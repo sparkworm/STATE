@@ -12,7 +12,7 @@ func _ready() -> void:
 	if starting_item != null:
 		body.set_item_held(starting_item.instantiate())
 	# For testing purposes, give a magazine for a glock
-	inventory.add_mag(Magazine.new(Globals.Weapons.GLOCK17, 17))
+	inventory.add_mag(Globals.Weapons.GLOCK17, Magazine.new(Globals.Weapons.GLOCK17, 17))
 
 
 func get_item_held() -> Wieldable:

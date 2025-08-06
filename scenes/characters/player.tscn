@@ -17,18 +17,19 @@ shape = SubResource("CapsuleShape2D_atpat")
 
 [node name="Body" parent="." index="1" instance=ExtResource("2_76oj4")]
 
-[node name="Controller" parent="." index="2" node_paths=PackedStringArray("player", "body", "cpt_velocity")]
-script = ExtResource("2_yewv4")
-player = NodePath("..")
-body = NodePath("../Body")
-cpt_velocity = NodePath("../CptVelocity")
-
 [node name="CptVelocity" parent="." index="3" instance=ExtResource("4_dyp2m")]
 max_speed = 120.0
 acceleration = 500.0
 decel = 250.0
 
-[node name="Inventory" parent="." index="5"]
+[node name="Inventory" parent="." index="4"]
 individual_ammo = Dictionary[int, int]({
 2: 6
 })
+
+[node name="Controller" parent="." index="5" node_paths=PackedStringArray("player", "body", "player_inventory", "cpt_velocity")]
+script = ExtResource("2_yewv4")
+player = NodePath("..")
+body = NodePath("../Body")
+player_inventory = NodePath("../Inventory")
+cpt_velocity = NodePath("../CptVelocity")
