@@ -4,7 +4,7 @@ extends Wieldable
 signal magazine_ejected(mag: Magazine)
 
 @export var ID: Globals.Weapons
-## TODO
+## The weapon will continually fire only if full_auto==true
 @export var full_auto: bool
 ## If true, can reload from mags, otherwise must round-reload
 @export var mag_reloadable: bool
@@ -15,8 +15,15 @@ signal magazine_ejected(mag: Magazine)
 @export var fire_timer: Timer
 @export var reload_timer: Timer
 
-func _use() -> void:
+func _start_use() -> void:
 	if can_use():
+		var rotation: Vector2 = Vector2.from_angle(get_global_transform().get_rotation())
+		proj_spawner.spawn_projectile(rotation)
+		cpt_ammo.decrement_ammo()
+		fire_timer.start()
+
+func _continue_use() -> void:
+	if can_use() and full_auto == true:
 		var rotation: Vector2 = Vector2.from_angle(get_global_transform().get_rotation())
 		proj_spawner.spawn_projectile(rotation)
 		cpt_ammo.decrement_ammo()
