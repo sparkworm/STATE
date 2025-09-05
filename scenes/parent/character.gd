@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 @onready var item_holder: Node2D = $ItemHolder
 @onready var inventory: CharacterInventory = $Inventory
+@onready var move_collision: CollisionShape2D = $MoveCollision
 
 func _ready() -> void:
 	# set starting item
@@ -17,6 +18,9 @@ func _ready() -> void:
 
 func get_item_held() -> Wieldable:
 	return body.get_item_held()
+
+func update_move_collision() -> void:
+	move_collision.rotation = body.torso.rotation
 
 ## Handles character's attempt to reload.  Returns whether reload was successful.
 ## NOTE: was cut from PlayerController with modifications, so we'll need to make sure nothing

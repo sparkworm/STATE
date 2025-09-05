@@ -14,7 +14,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	body.head_and_torso_look_towards(body.get_global_mouse_position())
 	## TODO: fix rotation of move collision to be more flexible.
-	$"../MoveCollision".rotation = body.torso.rotation
+	player.update_move_collision()
+	#$"../MoveCollision".rotation = body.torso.rotation
 	handle_movement(delta)
 	
 	var item: Wieldable = player.get_item_held()
