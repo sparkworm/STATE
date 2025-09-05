@@ -2,6 +2,9 @@
 
 ## Core game functionality
 
+- Level transitions
+- Cutscene support
+
 ## Characters
 
 Implement Enemies
@@ -29,3 +32,36 @@ Implement Inventory system
 - Allow player to switch between items.
 - Allow player to drop items.
 - Allow player to pick up items.
+
+## Sprites
+
+Weapons
+- 
+
+Characters
+- Dead body sprites for all character types
+- Main player (welding mask?)
+- Police
+	- SWAT
+	- Local Enforcers
+- Military
+- Secret Service
+- Politicians
+- Bureaucrats
+
+Decor
+- Furniture
+	- Table
+	- Chair
+	- Couch
+- Rugs
+- Bloody Footprints
+
+Lighting
+- Muzzle flash mask
+- Ceiling lights ?
+
+Particles
+- Muzzle flash particles
+- Blood spurt particles
+- Particles for wall being hit by bullet
