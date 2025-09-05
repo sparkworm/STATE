@@ -17,6 +17,7 @@ var deactivated: bool = false
 @onready var termination_timer: Timer = $TimerTermination
 
 func _ready() -> void:
+	# start the timer that will prevent the bullet from flying infinitely
 	termination_timer.start()
 	var trail: BulletTrail = bullet_trail.instantiate()
 	trail.max_points = trail_points
@@ -43,7 +44,7 @@ func test_for_collision() -> void:
 		return
 	collide()
 	
-## Handle a collision if it has occured
+## Handle a collision if it has occured.  
 func collide() -> void:
 	position = ray_cast.get_collision_point()
 	bullet_collided.emit(global_position)
@@ -51,5 +52,6 @@ func collide() -> void:
 	#collider.hit()
 	queue_free()
 
+## Called when the termination timer reaches zero, killing the bullet
 func _on_timer_termination_timeout() -> void:
 	queue_free()

@@ -19,7 +19,7 @@ signal effect_spawned(eff: Node2D)
 ## Called when anything that is displayed on the HUD might be changed
 ## TODO: fix up (currently there are a bunch of sloppy and redundant calls to this)
 signal update_hud
-
+## Called when player's health changes
 signal player_health_changed(new_health: float)
 #endregion
 

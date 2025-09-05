@@ -8,6 +8,8 @@ extends CanvasLayer
 func _ready() -> void:
 	MessageBus.update_hud.connect(update_item_held_panel)
 
+## Updates HUD panel to display the most recent information on the weapon held, the amount of ammo
+## therein, and the amount of ammo in inventory.
 func update_item_held_panel() -> void:
 	print("updating item held")
 	var txt: String = ""
@@ -32,23 +34,3 @@ func update_item_held_panel() -> void:
 					]
 
 	item_held_label.text = txt
-
-'''func _ready() -> void:
-	MessageBus.player_item_changed.connect(update_player_item)
-	MessageBus.player_health_changed.connect(update_player_health) #TODO
-	MessageBus.player_inventory_changed.connect(update_player_inventory)
-
-## TODO: remove argument, as there is now reference to player
-func update_player_item(new_item: Wieldable) -> void:
-	var item_name: String = new_item.item_name
-	item_held_label.text = "Item held: %s" % [item_name]
-
-## TODO: remove argument, as there is now reference to player
-func update_player_health(new_health: float) -> void:
-	pass
-
-## Currently retarded
-## TODO: remove argument, as there is now reference to player
-func update_player_inventory(inventory: CharacterInventory) -> void:
-	pass
-'''

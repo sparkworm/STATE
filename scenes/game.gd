@@ -17,6 +17,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			and Globals.current_scene_idx != SceneAccess.IDX.MENU:
 		MessageBus.pause_menu_toggled.emit()
 
+## Changes current scene to the one indicated by the specified index
 func switch_scene(scene_idx: SceneAccess.IDX) -> void:
 	Globals.current_scene_idx = scene_idx
 	# end current scene

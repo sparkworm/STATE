@@ -13,9 +13,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	body.head_and_torso_look_towards(body.get_global_mouse_position())
-	## TODO: fix rotation of move collision to be more flexible.
+	## NOTE: might even move this to Character's _physics_process()
 	player.update_move_collision()
-	#$"../MoveCollision".rotation = body.torso.rotation
 	handle_movement(delta)
 	
 	var item: Wieldable = player.get_item_held()
@@ -28,6 +27,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("reload"):
 		player.reload()
 
+## Handles player movements based on user inputs
 func handle_movement(delta: float) -> void:
 	cpt_velocity.velocity = player.get_real_velocity()
 	move_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")

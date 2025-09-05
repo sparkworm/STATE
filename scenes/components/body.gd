@@ -26,10 +26,13 @@ func head_look_towards(global_coords: Vector2) -> void:
 	elif ang_diff < 0 and -ang_diff > max_head_look_angle:
 		head.rotation = -max_head_look_angle
 
+## Makes both the head and torso look towards a point, meaning the head is thus looking straight
+## relative to the torso
 func head_and_torso_look_towards(global_coords: Vector2) -> void:
-	head.look_at(global_coords)
 	torso.look_at(global_coords)
+	head.look_at(global_coords)
 
+## Returns the item that is being held in item_holder
 func get_item_held() -> Wieldable:
 	# for potential debugging purposes
 	var child_count: int = item_holder.get_child_count()
@@ -41,6 +44,7 @@ func get_item_held() -> Wieldable:
 
 	return item_holder.get_child(0)
 
+## Removes all previous items held and adds a new one to item_holder.
 func set_item_held(item: Wieldable) -> void:
 	# loop just to make sure all children are destroyed
 	for child in item_holder.get_children():

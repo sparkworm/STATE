@@ -9,12 +9,15 @@ func _ready() -> void:
 	MessageBus.effect_spawned.connect(spawn_effect)
 	MessageBus.debug_pixel_spawned.connect(spawn_debug_pixel)
 
+## Adds specified projectile as a child of projectiles
 func spawn_projectile(proj: Projectile) -> void:
 	projectiles.add_child(proj)
 
+## Adds specified effect as a child of effects
 func spawn_effect(eff: Node) -> void:
 	effects.add_child(eff)
 
+## Creates a singular white pixel for debugging purposes.
 func spawn_debug_pixel(pos: Vector2) -> void:
 	var pixel: Node2D = Globals.debug_pixel.instantiate()
 	pixel.global_position = pos

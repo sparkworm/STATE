@@ -64,12 +64,14 @@ func decrement_ammo(type: Globals.AmmoTypes, amnt:= 1) -> void:
 	individual_ammo[type] -= amnt
 	inventory_changed.emit()
 
+## Returns the ammount of ammo there is for non-mag-reloadable weapons
 func individual_ammo_count(ammo_type: Globals.AmmoTypes) -> int:
 	if individual_ammo.has(ammo_type):
 		return individual_ammo[ammo_type]
 	print("WARNING: requested count for ammo type not present")
 	return 0
 
+## Returns the number of mags there are.
 func mag_count(weapon_type: Globals.Weapons) -> int:
 	if magazines.has(weapon_type):
 		return magazines[weapon_type].size()

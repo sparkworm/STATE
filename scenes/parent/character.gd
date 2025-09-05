@@ -15,10 +15,11 @@ func _ready() -> void:
 	# For testing purposes, give a magazine for a glock
 	inventory.add_mag(Globals.Weapons.GLOCK17, Magazine.new(Globals.Weapons.GLOCK17, 17))
 
-
+## Returns the item currently held
 func get_item_held() -> Wieldable:
 	return body.get_item_held()
 
+## Moves the CollisionShape to match the rotation of the torso sprite
 func update_move_collision() -> void:
 	move_collision.rotation = body.torso.rotation
 
