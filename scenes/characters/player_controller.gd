@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 	## NOTE: might even move this to Character's _physics_process()
 	player.update_move_collision()
 	handle_movement(delta)
-	
+
 	var item: Wieldable = player.get_item_held()
 	if item != null:
 		if Input.is_action_just_pressed("fire"):

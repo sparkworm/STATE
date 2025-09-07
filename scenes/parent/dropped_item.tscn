@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://chwfanh7pwnqs"]
+
+[ext_resource type="Script" uid="uid://iweq67j416qr" path="res://scenes/parent/dropped_item.gd" id="1_c1biu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3xj4i"]
+radius = 4.0
+height = 10.0
+
+[node name="DroppedItem" type="RigidBody2D"]
+collision_layer = 8
+gravity_scale = 0.0
+script = ExtResource("1_c1biu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3xj4i")
+
+[node name="WeaponSprite" type="Sprite2D" parent="."]
