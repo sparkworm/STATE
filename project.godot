@@ -77,7 +77,8 @@ debug_button_1={
 2d_physics/layer_1="walls"
 2d_physics/layer_2="characters"
 2d_physics/layer_3="projectiles"
-2d_physics/layer_4="interactable"
+2d_physics/layer_4="dropped_items"
+2d_physics/layer_5="interactable"
 
 [physics]
 
