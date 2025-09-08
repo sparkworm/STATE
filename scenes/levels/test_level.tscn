@@ -36,3 +36,6 @@ position = Vector2(44, 24)
 
 [node name="DroppedGlock17" parent="DroppedItems" index="0" instance=ExtResource("3_fr1um")]
 position = Vector2(33, -19)
+
+[node name="DroppedGlock18" parent="DroppedItems" index="1" instance=ExtResource("3_fr1um")]
+position = Vector2(-23, -27)

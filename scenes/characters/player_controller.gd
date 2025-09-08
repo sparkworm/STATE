@@ -18,15 +18,25 @@ func _physics_process(delta: float) -> void:
 	handle_movement(delta)
 
 func _process(delta: float) -> void:
-	var item: Wieldable = player.get_item_held()
-	if item != null:
-		if Input.is_action_just_pressed("fire"):
-			item._start_use()
+	if Input.is_action_pressed("fire"):
+		var item: Wieldable = player.get_item_held()
+		if item != null:
+			if Input.is_action_just_pressed("fire"):
+				item._start_use()
+			else:
+				item._continue_use()
 			MessageBus.update_hud.emit()
-		elif Input.is_action_pressed("fire"):
-			item._continue_use()
+		
+	
 	if Input.is_action_just_pressed("reload"):
 		player.reload()
+	
+	if Input.is_action_just_pressed("pickup_item"):
+		var items: Array[DroppedItem] = player.get_dropped_items_in_pickup_area()
+		print("dropped items: ", items)
+		if items.size() > 0:
+			print("changing items")
+			player.pickup_item(items[0])
 
 ## Handles player movements based on user inputs
 func handle_movement(delta: float) -> void:

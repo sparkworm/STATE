@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bou5t0p158o7h"]
+[gd_scene load_steps=5 format=3 uid="uid://bou5t0p158o7h"]
 
 [ext_resource type="Script" uid="uid://b0wf0dwmtfij2" path="res://scenes/parent/character.gd" id="1_2rq4q"]
 [ext_resource type="PackedScene" uid="uid://dat6x3ipyki8e" path="res://scenes/components/character_inventory.tscn" id="2_eo5fb"]
-[ext_resource type="PackedScene" uid="uid://c7eup1hsit4r" path="res://scenes/wieldable/glock_17.tscn" id="2_yaawu"]
 [ext_resource type="Script" uid="uid://bsrw0qs77aq7d" path="res://scenes/components/body.gd" id="4_tlv43"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yaawu"]
@@ -12,7 +11,6 @@ height = 16.0
 [node name="Character" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_2rq4q")
-starting_item = ExtResource("2_yaawu")
 
 [node name="MoveCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_yaawu")
@@ -28,6 +26,13 @@ metadata/_custom_type_script = "uid://bsrw0qs77aq7d"
 [node name="Arms" type="Sprite2D" parent="Body/Torso"]
 
 [node name="ItemHolder" type="Marker2D" parent="Body/Torso/Arms"]
+
+[node name="PickupArea" type="Area2D" parent="Body/Torso"]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Torso/PickupArea"]
 
 [node name="Head" type="Sprite2D" parent="Body"]
 

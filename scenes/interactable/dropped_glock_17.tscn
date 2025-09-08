@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://8ywbtdqu13np"]
+[gd_scene load_steps=4 format=3 uid="uid://8ywbtdqu13np"]
 
 [ext_resource type="PackedScene" uid="uid://chwfanh7pwnqs" path="res://scenes/parent/dropped_item.tscn" id="1_jhnbs"]
+[ext_resource type="PackedScene" uid="uid://c7eup1hsit4r" path="res://scenes/wieldable/glock_17.tscn" id="2_ldtdc"]
 [ext_resource type="Texture2D" uid="uid://bvjreic8yiawb" path="res://textures/weapon/side_glock17.png" id="2_mcyk4"]
 
 [node name="DroppedGlock17" instance=ExtResource("1_jhnbs")]
+wieldable_scene = ExtResource("2_ldtdc")
 
 [node name="WeaponSprite" parent="." index="1"]
 position = Vector2(0, -1)

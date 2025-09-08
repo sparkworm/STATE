@@ -7,3 +7,7 @@ extends RigidBody2D
 @export var wieldable_scene: PackedScene
 
 ## TODO: Add ItemPickupArea that can detect dropped items and initiate a pickup
+
+func _ready() -> void:
+	if wieldable_scene == null:
+		print("WARNING, DroppedItem with null wieldable_scene!")

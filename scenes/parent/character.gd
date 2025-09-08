@@ -7,10 +7,12 @@ extends CharacterBody2D
 @onready var item_holder: Node2D = $ItemHolder
 @onready var inventory: CharacterInventory = $Inventory
 @onready var move_collision: CollisionShape2D = $MoveCollision
+@onready var pickup_area: Area2D = %PickupArea
 
 func _ready() -> void:
 	# set starting item
 	if starting_item != null:
+		print("Giving player starting item")
 		body.set_item_held(starting_item.instantiate())
 	# For testing purposes, give a magazine for a glock
 	inventory.add_mag(Globals.Weapons.GLOCK17, Magazine.new(Globals.Weapons.GLOCK17, 17))
@@ -18,6 +20,11 @@ func _ready() -> void:
 ## Returns the item currently held
 func get_item_held() -> Wieldable:
 	return body.get_item_held()
+
+## Sets the item currently held to the new_item
+## TODO: Drop old item instead of merely deleting it.
+func set_item_held(new_item: Wieldable) -> void:
+	body.set_item_held(new_item)
 
 ## Moves the CollisionShape to match the rotation of the torso sprite
 func update_move_collision() -> void:
@@ -48,3 +55,17 @@ func reload() -> bool:
 				weapon.round_reload()
 		MessageBus.update_hud.emit()
 		return true
+
+## Returns an array of all the DroppedItems in the pickup area
+func get_dropped_items_in_pickup_area() -> Array[DroppedItem]:
+	var dropped_items: Array[DroppedItem]
+	for item in pickup_area.get_overlapping_bodies():
+		if item is DroppedItem:
+			dropped_items.append(item)
+	return dropped_items
+
+func pickup_item(item: DroppedItem) -> void:
+	var new_item: Wieldable = item.wieldable_scene.instantiate()
+	set_item_held(new_item)
+	MessageBus.update_hud.emit()
+	item.queue_free()
