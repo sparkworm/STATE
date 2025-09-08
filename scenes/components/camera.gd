@@ -7,7 +7,7 @@ extends Camera2D
 ## that the camera will do nothing when the mouse is moved
 @export var look_strength: float
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	follow_subject()
 	apply_offset()
 

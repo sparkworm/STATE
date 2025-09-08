@@ -16,9 +16,9 @@ func _init(type: Globals.Weapons, amnt: int) -> void:
 	ammo_remaining = amnt
 
 func _to_string() -> String:
-	var str: String = "Magazine:\n\tgun_type: %s\n\tammo_remaining: %s" % \
+	var out_str: String = "Magazine:\n\tgun_type: %s\n\tammo_remaining: %s" % \
 			[gun_type, ammo_remaining]
-	return str
+	return out_str
 
 ## Returns the specific cartridge used
 func get_ammo_type() -> Globals.AmmoTypes:

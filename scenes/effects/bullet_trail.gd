@@ -9,7 +9,7 @@ var has_collided: bool = false
 func _ready() -> void:
 	bullet.bullet_collided.connect(handle_collision)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not has_collided:
 		handle_movement()
 	else:

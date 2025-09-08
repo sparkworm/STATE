@@ -17,15 +17,15 @@ signal magazine_ejected(mag: Magazine)
 
 func _start_use() -> void:
 	if can_use():
-		var rotation: Vector2 = Vector2.from_angle(get_global_transform().get_rotation())
-		proj_spawner.spawn_projectile(rotation)
+		var rot: Vector2 = Vector2.from_angle(get_global_transform().get_rotation())
+		proj_spawner.spawn_projectile(rot)
 		cpt_ammo.decrement_ammo()
 		fire_timer.start()
 
 func _continue_use() -> void:
 	if can_use() and full_auto == true:
-		var rotation: Vector2 = Vector2.from_angle(get_global_transform().get_rotation())
-		proj_spawner.spawn_projectile(rotation)
+		var rot: Vector2 = Vector2.from_angle(get_global_transform().get_rotation())
+		proj_spawner.spawn_projectile(rot)
 		cpt_ammo.decrement_ammo()
 		fire_timer.start()
 
