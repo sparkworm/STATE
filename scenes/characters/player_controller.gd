@@ -17,6 +17,7 @@ func _physics_process(delta: float) -> void:
 	player.update_move_collision()
 	handle_movement(delta)
 
+func _process(delta: float) -> void:
 	var item: Wieldable = player.get_item_held()
 	if item != null:
 		if Input.is_action_just_pressed("fire"):
