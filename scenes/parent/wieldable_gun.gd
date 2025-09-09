@@ -18,19 +18,23 @@ signal magazine_ejected(mag: Magazine)
 ## Cooldown during reload in which the weapon cannot fire.
 @export var reload_timer: Timer
 
+## Particle emitter for muzzle flash
+@onready var fire_particles: GPUParticles2D = $ProjectileSpawner/FireParticles
+
 func _start_use() -> void:
 	if can_use():
-		var rot: Vector2 = Vector2.from_angle(get_global_transform().get_rotation())
-		proj_spawner.spawn_projectile(rot)
-		cpt_ammo.decrement_ammo()
-		fire_timer.start()
+		fire()
 
 func _continue_use() -> void:
 	if can_use() and full_auto == true:
-		var rot: Vector2 = Vector2.from_angle(get_global_transform().get_rotation())
-		proj_spawner.spawn_projectile(rot)
-		cpt_ammo.decrement_ammo()
-		fire_timer.start()
+		fire()
+
+func fire() -> void:
+	var rot: Vector2 = Vector2.from_angle(get_global_transform().get_rotation())
+	proj_spawner.spawn_projectile(rot)
+	cpt_ammo.decrement_ammo()
+	fire_particles.emitting = true
+	fire_timer.start()
 
 ## Return whether the weapon can fire, which is only true if there's ammo, and both the fire and
 ## reload timers have completed.
