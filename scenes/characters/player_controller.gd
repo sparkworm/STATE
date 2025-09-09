@@ -26,16 +26,15 @@ func _process(_delta: float) -> void:
 			else:
 				item._continue_use()
 			MessageBus.update_hud.emit()
-		
-	
+
+
 	if Input.is_action_just_pressed("reload"):
 		player.reload()
-	
+
 	if Input.is_action_just_pressed("pickup_item"):
 		var items: Array[DroppedItem] = player.get_dropped_items_in_pickup_area()
-		print("dropped items: ", items)
 		if items.size() > 0:
-			print("changing items")
+			player.drop_item()
 			player.pickup_item(items[0])
 
 ## Handles player movements based on user inputs

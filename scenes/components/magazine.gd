@@ -6,12 +6,12 @@ extends Object
 ## with a difference in ammo equal to the amount of ammo used.
 
 ## The type of gun that this magazine will fit into
-var gun_type: Globals.Weapons
+var gun_type: Globals.Wieldables
 ## Amount of ammo in the mag
 var ammo_remaining: int
 
 ## initialize
-func _init(type: Globals.Weapons, amnt: int) -> void:
+func _init(type: Globals.Wieldables, amnt: int) -> void:
 	gun_type = type
 	ammo_remaining = amnt
 

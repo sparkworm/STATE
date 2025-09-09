@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var starting_item: PackedScene
 @export var body: Body
+@export var item_drop_force: float
 
 @onready var item_holder: Node2D = $ItemHolder
 @onready var inventory: CharacterInventory = $Inventory
@@ -15,7 +16,7 @@ func _ready() -> void:
 		print("Giving player starting item")
 		body.set_item_held(starting_item.instantiate())
 	# For testing purposes, give a magazine for a glock
-	inventory.add_mag(Globals.Weapons.GLOCK17, Magazine.new(Globals.Weapons.GLOCK17, 17))
+	inventory.add_mag(Globals.Wieldables.GLOCK17, Magazine.new(Globals.Wieldables.GLOCK17, 17))
 
 ## Returns the item currently held
 func get_item_held() -> Wieldable:
@@ -65,7 +66,20 @@ func get_dropped_items_in_pickup_area() -> Array[DroppedItem]:
 	return dropped_items
 
 func pickup_item(item: DroppedItem) -> void:
-	var new_item: Wieldable = item.wieldable_scene.instantiate()
+	var new_item: Wieldable = item.create_wieldable()
 	set_item_held(new_item)
 	MessageBus.update_hud.emit()
 	item.queue_free()
+
+func drop_item() -> void:
+	var item: Wieldable = get_item_held()
+	if item == null:
+		return
+	var new_dropped_item: DroppedItem = Globals.DroppedItemScene[item.ID].instantiate()
+	if item is WieldableGun:
+		new_dropped_item.wieldable_ammo = item.cpt_ammo.ammo
+	new_dropped_item.position = position
+	new_dropped_item.rotation = randf_range(0,2*PI)
+	new_dropped_item.apply_impulse(Vector2.from_angle(body.torso.rotation)*item_drop_force)
+	MessageBus.dropped_item_spawned.emit(new_dropped_item)
+	set_item_held(null)

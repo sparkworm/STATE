@@ -49,5 +49,7 @@ func set_item_held(item: Wieldable) -> void:
 	# loop just to make sure all children are destroyed
 	for child in item_holder.get_children():
 		item_holder.remove_child(child)
+	if item == null:
+		return
 	item_holder.add_child(item)
 	#MessageBus.player_item_changed.emit(item)

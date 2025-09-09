@@ -1,6 +1,7 @@
 class_name Wieldable
 extends Node2D
 
+@export var ID: Globals.Wieldables
 @export var item_name: String = "unnamed item"
 
 ## Called when the use button is just pressed

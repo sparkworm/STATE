@@ -4,10 +4,12 @@ class_name DroppedItem
 extends RigidBody2D
 
 ## The scene that this DroppedItem should load into its new wielder's hand when picked up
-@export var wieldable_scene: PackedScene
+@export var wieldable: Globals.Wieldables
+@export var wieldable_ammo: int
 
-## TODO: Add ItemPickupArea that can detect dropped items and initiate a pickup
-
-func _ready() -> void:
-	if wieldable_scene == null:
-		print("WARNING, DroppedItem with null wieldable_scene!")
+## Returns the wieldable that was stored within
+func create_wieldable() -> Wieldable:
+	var new_wieldable: Wieldable = Globals.WieldableScene[wieldable].instantiate()
+	if new_wieldable is WieldableGun:
+		new_wieldable.cpt_ammo.ammo = wieldable_ammo
+	return new_wieldable

@@ -13,7 +13,7 @@ enum AmmoTypes {
 	TWELVE_GAUGE, # Mossberg 500
 }
 
-enum Weapons {
+enum Wieldables {
 	# pistol
 	GLOCK17,
 	USP,
@@ -31,17 +31,25 @@ enum Weapons {
 }
 
 ## The cartridge used by a specific weapon
-const WeaponAmmo: Dictionary[Weapons, AmmoTypes] = {
-	Weapons.GLOCK17 : AmmoTypes.NINE_MM,
-	Weapons.USP : AmmoTypes.ACP_45,
-	Weapons.MAGNUM_REVOLVER : AmmoTypes.MAGNUM_44,
-	Weapons.FIVE_SEVEN : AmmoTypes.FIVE_SEVEN,
-	Weapons.MP5 : AmmoTypes.NINE_MM,
-	Weapons.UMP45 : AmmoTypes.ACP_45,
-	Weapons.THOMPSON : AmmoTypes.ACP_45,
-	Weapons.M4 : AmmoTypes.NATO_556,
-	Weapons.M24 : AmmoTypes.NATO_762X51,
-	Weapons.MOSSBERG500 : AmmoTypes.TWELVE_GAUGE,
+const WeaponAmmo: Dictionary[Wieldables, AmmoTypes] = {
+	Wieldables.GLOCK17 : AmmoTypes.NINE_MM,
+	Wieldables.USP : AmmoTypes.ACP_45,
+	Wieldables.MAGNUM_REVOLVER : AmmoTypes.MAGNUM_44,
+	Wieldables.FIVE_SEVEN : AmmoTypes.FIVE_SEVEN,
+	Wieldables.MP5 : AmmoTypes.NINE_MM,
+	Wieldables.UMP45 : AmmoTypes.ACP_45,
+	Wieldables.THOMPSON : AmmoTypes.ACP_45,
+	Wieldables.M4 : AmmoTypes.NATO_556,
+	Wieldables.M24 : AmmoTypes.NATO_762X51,
+	Wieldables.MOSSBERG500 : AmmoTypes.TWELVE_GAUGE,
+}
+
+const WieldableScene: Dictionary[Wieldables, PackedScene] = {
+	Wieldables.GLOCK17 : preload("res://scenes/wieldable/glock_17.tscn")
+}
+
+const DroppedItemScene: Dictionary[Wieldables, PackedScene] = {
+	Wieldables.GLOCK17 : preload("res://scenes/interactable/dropped_glock_17.tscn")
 }
 
 var current_scene_idx: SceneAccess.IDX = SceneAccess.IDX.MENU

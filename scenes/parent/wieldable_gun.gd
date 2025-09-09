@@ -3,7 +3,6 @@ extends Wieldable
 
 signal magazine_ejected(mag: Magazine)
 
-@export var ID: Globals.Weapons
 ## The weapon will continually fire only if full_auto==true
 @export var full_auto: bool
 ## If true, can reload from mags, otherwise must round-reload

@@ -10,7 +10,7 @@ signal inventory_changed
 @export var individual_ammo: Dictionary[Globals.AmmoTypes,int]
 
 ## NOTE: Array is Array[Magazine], but nested types are apparently not supported
-var magazines: Dictionary[Globals.Weapons, Array]
+var magazines: Dictionary[Globals.Wieldables, Array]
 
 ## Returns whether there is ammo that can be reloaded into a given weapon
 func has_ammo_for_weapon(weapon: WieldableGun) -> bool:
@@ -50,7 +50,7 @@ func get_mag_for_reload(weapon: WieldableGun) -> Magazine:
 	return chosen_mag
 
 ## Adds given Magazine to magazines
-func add_mag(weapon_type: Globals.Weapons, new_mag: Magazine) -> void:
+func add_mag(weapon_type: Globals.Wieldables, new_mag: Magazine) -> void:
 	# if key for weapon_type already exists, add there
 	if magazines.has(weapon_type):
 		magazines[weapon_type].append(new_mag)
@@ -72,7 +72,7 @@ func individual_ammo_count(ammo_type: Globals.AmmoTypes) -> int:
 	return 0
 
 ## Returns the number of mags there are.
-func mag_count(weapon_type: Globals.Weapons) -> int:
+func mag_count(weapon_type: Globals.Wieldables) -> int:
 	if magazines.has(weapon_type):
 		return magazines[weapon_type].size()
 	print("WARNING: requested count for ammo type not present")

@@ -21,6 +21,8 @@ signal effect_spawned(eff: Node2D)
 signal update_hud
 ## Called when player's health changes
 signal player_health_changed(new_health: float)
+
+signal dropped_item_spawned(dropped_item: DroppedItem, pos: Vector2)
 #endregion
 
 ## Called to place a single white pixel at a given location.  Useful for debugging purposes

@@ -36,6 +36,7 @@ modulate = Color(0.835718, 1.8049e-06, 1.92523e-07, 0.784314)
 [node name="Characters" type="Node2D" parent="." index="8"]
 
 [node name="Player" parent="Characters" index="0" instance=ExtResource("4_ajmd0")]
+item_drop_force = 0.0
 
 [node name="Camera" type="Camera2D" parent="." index="9" node_paths=PackedStringArray("subject")]
 process_mode = 3

@@ -36,6 +36,11 @@ position = Vector2(44, 24)
 
 [node name="DroppedGlock17" parent="DroppedItems" index="0" instance=ExtResource("3_fr1um")]
 position = Vector2(33, -19)
+linear_damp = 0.0
 
 [node name="DroppedGlock18" parent="DroppedItems" index="1" instance=ExtResource("3_fr1um")]
 position = Vector2(-23, -27)
+linear_damp = 0.0
+
+[node name="Player" parent="Characters" index="0"]
+item_drop_force = 100.0
