@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck3ujtyyckoqq"]
+
+[ext_resource type="PackedScene" uid="uid://bou5t0p158o7h" path="res://scenes/parent/character.tscn" id="1_pis1j"]
+[ext_resource type="Texture2D" uid="uid://drgyodho8wjm6" path="res://textures/character/shoulders_1.png" id="2_s5exy"]
+[ext_resource type="Texture2D" uid="uid://d0gk2kblt6qpi" path="res://textures/character/head_1.png" id="3_l8q65"]
+
+[node name="TestDummy" instance=ExtResource("1_pis1j")]
+
+[node name="Torso" parent="Body" index="1"]
+texture = ExtResource("2_s5exy")
+
+[node name="Head" parent="Body" index="2"]
+texture = ExtResource("3_l8q65")
