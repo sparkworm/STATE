@@ -37,21 +37,21 @@ func _continue_use() -> void:
 func can_use() -> bool:
 	return cpt_ammo.has_ammo() and fire_timer.is_stopped() and reload_timer.is_stopped()
 
-## Reload an individual round into the weapon
-func round_reload() -> void:
-	# check to make sure the weapon is neither still firing nor still reloading
-	if not (reload_timer.is_stopped() and fire_timer.is_stopped()):
-		return
+## Reload an individual round into the weapon.  Returns whether the reload was successful.
+func round_reload() -> bool:
 	cpt_ammo.round_reload()
 	reload_timer.start()
+	return true
 
-## Reload an entire mag into the weapon.
-func mag_reload(mag: Magazine) -> void:
-	# check to make sure the weapon is neither still firing nor still reloading
-	if not (reload_timer.is_stopped() and fire_timer.is_stopped()):
-		return
+## Reload an entire mag into the weapon.  Returns whether the reload was successful.
+func mag_reload(mag: Magazine) -> bool:
 	cpt_ammo.mag_reload(mag)
 	reload_timer.start()
+	return true
+
+## Returns whether all cooldowns have ended, allowing the weapon to reload.
+func can_reload() -> bool:
+	return (reload_timer.is_stopped() and fire_timer.is_stopped())
 
 """Returns the old mag (so that it can be
 ## put in inventory o algo) and sets ammo equal to the ammount in the new mag"""

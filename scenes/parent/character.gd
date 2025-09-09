@@ -25,6 +25,7 @@ func _ready() -> void:
 		body.set_item_held(starting_item.instantiate())
 	# For testing purposes, give a magazine for a glock
 	inventory.add_mag(Globals.Wieldables.GLOCK17, Magazine.new(Globals.Wieldables.GLOCK17, 17))
+	inventory.add_mag(Globals.Wieldables.GLOCK17, Magazine.new(Globals.Wieldables.GLOCK17, 17))
 
 ## Returns the item currently held
 func get_item_held() -> Wieldable:
@@ -44,6 +45,9 @@ func update_move_collision() -> void:
 ## horrible happens
 func reload() -> bool:
 	var weapon: WieldableGun = get_item_held()
+	if not weapon.can_reload():
+		print("weapon still on cooldown")
+		return false
 	if weapon == null:
 		print("No weapon to reload")
 		return false
