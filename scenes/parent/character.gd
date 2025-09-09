@@ -1,13 +1,21 @@
 class_name Character
 extends CharacterBody2D
 
+## The item that the character will start with in their hands.  Useful for NPCs who should
+## spawn with a weapon
 @export var starting_item: PackedScene
+## The visible body of the character, which controls the head, torso, arms and legs sprites.
+## [br][br]
+## The body also controls the rotation of the held item.
 @export var body: Body
+## The force, or more precisely, the impulse, applied to an item when dropped.
 @export var item_drop_force: float
 
-@onready var item_holder: Node2D = $ItemHolder
+## The inventory of the character, which contains all ammo
 @onready var inventory: CharacterInventory = $Inventory
+## The collision shape of the player.  This is rotated manually, though I can't remember why.
 @onready var move_collision: CollisionShape2D = $MoveCollision
+## The area in which the player may pickup DroppedItems
 @onready var pickup_area: Area2D = %PickupArea
 
 func _ready() -> void:
@@ -65,12 +73,16 @@ func get_dropped_items_in_pickup_area() -> Array[DroppedItem]:
 			dropped_items.append(item)
 	return dropped_items
 
+## Adds an item from the specified DroppedItem to hand.
+## [br][br]
+## NOTE: This makes no use of the pickup_area, so its name may be misleading
 func pickup_item(item: DroppedItem) -> void:
 	var new_item: Wieldable = item.create_wieldable()
 	set_item_held(new_item)
 	MessageBus.update_hud.emit()
 	item.queue_free()
 
+## Creates a DroppedItem for Level to spawn, then deletes the currently held item.
 func drop_item() -> void:
 	var item: Wieldable = get_item_held()
 	if item == null:
