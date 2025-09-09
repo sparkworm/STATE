@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bou5t0p158o7h"]
+[gd_scene load_steps=6 format=3 uid="uid://bou5t0p158o7h"]
 
 [ext_resource type="Script" uid="uid://b0wf0dwmtfij2" path="res://scenes/parent/character.gd" id="1_2rq4q"]
 [ext_resource type="PackedScene" uid="uid://dat6x3ipyki8e" path="res://scenes/components/character_inventory.tscn" id="2_eo5fb"]
+[ext_resource type="PackedScene" uid="uid://lmp46n4viwad" path="res://scenes/components/cpt_health.tscn" id="4_aochy"]
 [ext_resource type="Script" uid="uid://bsrw0qs77aq7d" path="res://scenes/components/body.gd" id="4_tlv43"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yaawu"]
@@ -42,3 +43,6 @@ collision_mask = 8
 [node name="Inventory" parent="." instance=ExtResource("2_eo5fb")]
 
 [node name="Controller" type="Node" parent="."]
+
+[node name="CptHealth" parent="." instance=ExtResource("4_aochy")]
+unique_name_in_owner = true

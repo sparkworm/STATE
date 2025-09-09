@@ -1,6 +1,8 @@
 class_name Character
 extends CharacterBody2D
 
+## The name of the character, typically a role (e.g. Police Officer, or Test Dummy)
+@export var character_name: String = "Unnamed Character"
 ## The item that the character will start with in their hands.  Useful for NPCs who should
 ## spawn with a weapon
 @export var starting_item: PackedScene
@@ -17,12 +19,18 @@ extends CharacterBody2D
 @onready var move_collision: CollisionShape2D = $MoveCollision
 ## The area in which the player may pickup DroppedItems
 @onready var pickup_area: Area2D = %PickupArea
+## The component keeping track of the Character's health
+@onready var cpt_health: HealthComponent = %CptHealth
 
 func _ready() -> void:
 	# set starting item
 	if starting_item != null:
 		print("Giving player starting item")
 		body.set_item_held(starting_item.instantiate())
+
+	cpt_health.health_depleted.connect(queue_free)
+
+	# DEBUG
 	# For testing purposes, give a magazine for a glock
 	inventory.add_mag(Globals.Wieldables.GLOCK17, Magazine.new(Globals.Wieldables.GLOCK17, 17))
 	inventory.add_mag(Globals.Wieldables.GLOCK17, Magazine.new(Globals.Wieldables.GLOCK17, 17))
@@ -99,3 +107,7 @@ func drop_item() -> void:
 	new_dropped_item.apply_impulse(Vector2.from_angle(body.torso.rotation)*item_drop_force)
 	MessageBus.dropped_item_spawned.emit(new_dropped_item)
 	set_item_held(null)
+
+func take_hit(damage: int) -> void:
+	print(character_name, " took ", damage, " damage!")
+	cpt_health.take_damage(damage)

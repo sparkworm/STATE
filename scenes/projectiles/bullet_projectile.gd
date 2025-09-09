@@ -43,13 +43,15 @@ func test_for_collision() -> void:
 	if collider == null:
 		return
 	collide()
-	
-## Handle a collision if it has occured.  
+
+## Handle a collision if it has occured.
 func collide() -> void:
 	position = ray_cast.get_collision_point()
 	bullet_collided.emit(global_position)
 	# TODO: complete logic for transfering damage to collider
-	#collider.hit()
+	var collider: Object = ray_cast.get_collider()
+	if collider.has_method("take_hit"):
+		collider.take_hit(damage)
 	queue_free()
 
 ## Called when the termination timer reaches zero, killing the bullet

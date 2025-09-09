@@ -10,6 +10,7 @@ item_name = "Glock 17"
 [node name="ProjectileSpawner" parent="." index="0"]
 position = Vector2(5, 0)
 spread = 5.0
+damage = 45.0
 
 [node name="TimerFire" parent="." index="2"]
 wait_time = 0.1
