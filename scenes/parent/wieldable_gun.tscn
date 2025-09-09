@@ -1,10 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://c58txqxqr8dq5"]
+[gd_scene load_steps=14 format=3 uid="uid://c58txqxqr8dq5"]
 
 [ext_resource type="Script" uid="uid://bjlllyklexkiy" path="res://scenes/parent/wieldable_gun.gd" id="1_gdnv4"]
 [ext_resource type="PackedScene" uid="uid://bfo6vtny5gu3" path="res://scenes/components/projectile_spawner.tscn" id="2_n4qx1"]
 [ext_resource type="PackedScene" uid="uid://bojnc2n83qeek" path="res://scenes/components/cpt_ammo.tscn" id="3_jirk3"]
 [ext_resource type="PackedScene" uid="uid://dalg4ggflt5ee" path="res://scenes/projectiles/bullet_projectile.tscn" id="3_wdvvu"]
-[ext_resource type="Texture2D" uid="uid://b6rrm6ulhpgs" path="res://textures/white_pixel.png" id="4_3hrcg"]
 
 [sub_resource type="Curve" id="Curve_3hrcg"]
 _data = [Vector2(0, 1), 0.0, -0.477528, 0, 0, Vector2(1, 0.0786518), -2.03745, 0.0, 0, 0]
@@ -14,41 +13,42 @@ point_count = 2
 curve = SubResource("Curve_3hrcg")
 
 [sub_resource type="Gradient" id="Gradient_sf227"]
-colors = PackedColorArray(1, 0.282353, 0, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.477387, 1)
+colors = PackedColorArray(1, 0.901961, 0, 1, 1, 0.282353, 0, 1, 0.619608, 0.0705882, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_6ineo"]
 gradient = SubResource("Gradient_sf227")
 
 [sub_resource type="Curve" id="Curve_n6nnn"]
-_limits = [0.0, 100.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.485294, 15.7303), 23.5091, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_5igxs"]
 curve = SubResource("Curve_n6nnn")
 
-[sub_resource type="Curve" id="Curve_yww0q"]
+[sub_resource type="Curve" id="Curve_7ax3e"]
 _limits = [0.0, 5.0, 0.0, 1.0]
-_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(0.470588, 2.30337), -3.73533, -3.73533, 0, 0, Vector2(1, 1.24719), 0.0293876, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0.674158), 0.0, 0.0, 0, 0, Vector2(0.986667, 1.96629), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_ssia5"]
-curve = SubResource("Curve_yww0q")
+[sub_resource type="CurveTexture" id="CurveTexture_sf227"]
+curve = SubResource("Curve_7ax3e")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6ineo"]
-lifetime_randomness = 0.18
+lifetime_randomness = 1.0
 particle_flag_disable_z = true
+emission_shape_offset = Vector3(-1, 0, 0)
 angle_min = -110.8
 angle_max = 132.9
 inherit_velocity_ratio = 1.0
 spread = 16.807
-initial_velocity_min = 137.93
-initial_velocity_max = 287.36
+initial_velocity_min = 88.5
+initial_velocity_max = 264.55
 gravity = Vector3(0, 0, 0)
-damping_min = 58.621
+damping_min = 76.872
 damping_max = 100.0
 damping_curve = SubResource("CurveTexture_5igxs")
-scale_over_velocity_curve = SubResource("CurveTexture_ssia5")
+scale_curve = SubResource("CurveTexture_sf227")
 color_ramp = SubResource("GradientTexture1D_6ineo")
 alpha_curve = SubResource("CurveTexture_7ax3e")
 
@@ -63,11 +63,16 @@ reload_timer = NodePath("TimerReload")
 position = Vector2(9, 0)
 projectile_scene = ExtResource("3_wdvvu")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="ProjectileSpawner"]
+[node name="FireParticles" type="GPUParticles2D" parent="ProjectileSpawner"]
 emitting = false
-amount = 100
-texture = ExtResource("4_3hrcg")
-lifetime = 0.6
+amount = 25
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.05
+trail_sections = 2
+trail_section_subdivisions = 1
 process_material = SubResource("ParticleProcessMaterial_6ineo")
 
 [node name="CptAmmo" parent="." instance=ExtResource("3_jirk3")]
