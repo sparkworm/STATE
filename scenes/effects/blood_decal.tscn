@@ -9,6 +9,7 @@ noise_type = 2
 frequency = 0.0814
 offset = Vector3(86.47, 0, 0)
 fractal_octaves = 2
+fractal_gain = 0.48
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rl756"]
 noise = SubResource("FastNoiseLite_jpknc")
@@ -17,11 +18,12 @@ noise = SubResource("FastNoiseLite_jpknc")
 shader = ExtResource("1_e1kyl")
 shader_parameter/noise = SubResource("NoiseTexture2D_rl756")
 shader_parameter/dimensions = Vector2(320, 32)
+shader_parameter/alpha = 0.125
 
 [node name="BloodDecal" type="Sprite2D"]
 modulate = Color(1, 0, 0, 1)
 material = SubResource("ShaderMaterial_at2se")
 texture = ExtResource("1_02nqv")
 hframes = 10
-frame = 3
+frame = 7
 script = ExtResource("3_jpknc")
