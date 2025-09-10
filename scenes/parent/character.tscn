@@ -12,7 +12,7 @@ height = 16.0
 [node name="Character" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_2rq4q")
-item_drop_force = 500.0
+item_drop_force = 50.0
 
 [node name="MoveCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_yaawu")

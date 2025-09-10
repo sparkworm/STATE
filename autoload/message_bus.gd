@@ -21,8 +21,10 @@ signal effect_spawned(eff: Node2D)
 signal update_hud
 ## Called when player's health changes
 signal player_health_changed(new_health: float)
-
+## Spawns a dropped item in Level
 signal dropped_item_spawned(dropped_item: DroppedItem, pos: Vector2)
+## Spawns a decal, such as that of a blood puddle in Level
+signal decal_spawned(decal: Node2D)
 #endregion
 
 ## Called to place a single white pixel at a given location.  Useful for debugging purposes

@@ -14,9 +14,11 @@ tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAAAAAAAAAAAAAAAAAD//wAAAAABAAA
 tile_map_data = PackedByteArray("AAAFAPz/AAANAAAAAAAFAPv/AAAOAAEAAAAEAPv/AAAOAAAAAAAFAP3/AAANAAAAAAAFAP7/AAANAAAAAAAFAP//AAANAAAAAAAFAAAAAAANAAAAAAA=")
 
 [node name="BloodLayer2" type="Node2D" parent="Decals" index="0"]
+visible = false
 modulate = Color(0.835718, 1.8049e-06, 1.92523e-07, 0.784314)
 
 [node name="BloodLayer" parent="Decals" index="1"]
+visible = false
 modulate = Color(1, 1, 1, 1)
 self_modulate = Color(0.666667, 0, 0.101961, 0.941176)
 
@@ -30,7 +32,6 @@ rotation = -1.01663
 [node name="BloodDecal3" parent="Decals/BloodLayer" index="2" instance=ExtResource("2_yautc")]
 position = Vector2(19, 16)
 rotation = -0.56174
-frame = 3
 
 [node name="BloodDecal4" parent="Decals/BloodLayer" index="3" instance=ExtResource("2_yautc")]
 position = Vector2(44, 24)

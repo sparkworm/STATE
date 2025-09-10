@@ -12,6 +12,8 @@ extends CharacterBody2D
 @export var body: Body
 ## The force, or more precisely, the impulse, applied to an item when dropped.
 @export var item_drop_force: float
+## The scene that will be spawned when Character is hit.
+@export var blood_decal_scene: PackedScene = preload("res://scenes/effects/blood_decal.tscn")
 
 ## The inventory of the character, which contains all ammo
 @onready var inventory: CharacterInventory = $Inventory
@@ -53,11 +55,11 @@ func update_move_collision() -> void:
 ## horrible happens
 func reload() -> bool:
 	var weapon: WieldableGun = get_item_held()
-	if not weapon.can_reload():
-		print("weapon still on cooldown")
-		return false
 	if weapon == null:
 		print("No weapon to reload")
+		return false
+	if not weapon.can_reload():
+		print("weapon still on cooldown")
 		return false
 	else:
 		if not inventory.has_ammo_for_weapon(weapon):
@@ -111,3 +113,13 @@ func drop_item() -> void:
 func take_hit(damage: int) -> void:
 	print(character_name, " took ", damage, " damage!")
 	cpt_health.take_damage(damage)
+	var transport: DecalTransport = \
+			preload("res://scenes/effects/decal_transport.tscn").instantiate()
+	print("applying impulse")
+	transport.apply_impulse(Vector2.from_angle(randf_range(0,2*PI)) * item_drop_force)
+	transport.decal = blood_decal_scene.instantiate()
+	transport.decal.pick_random_frame()
+	transport.position = position
+
+
+	MessageBus.decal_spawned.emit(transport)

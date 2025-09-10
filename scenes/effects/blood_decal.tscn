@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://tih2ouwvuyvd"]
+[gd_scene load_steps=7 format=3 uid="uid://tih2ouwvuyvd"]
 
 [ext_resource type="Texture2D" uid="uid://chvh6n2jk7qbb" path="res://textures/vfx/decals_sheet.png" id="1_02nqv"]
 [ext_resource type="Shader" uid="uid://dxusprdq6doyd" path="res://shaders/blood_shader.gdshader" id="1_e1kyl"]
+[ext_resource type="Script" uid="uid://dd2ohlks5difb" path="res://scenes/effects/blood_decal.gd" id="3_jpknc"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jpknc"]
 noise_type = 2
@@ -18,7 +19,9 @@ shader_parameter/noise = SubResource("NoiseTexture2D_rl756")
 shader_parameter/dimensions = Vector2(320, 32)
 
 [node name="BloodDecal" type="Sprite2D"]
+modulate = Color(1, 0, 0, 1)
 material = SubResource("ShaderMaterial_at2se")
 texture = ExtResource("1_02nqv")
 hframes = 10
-frame = 6
+frame = 3
+script = ExtResource("3_jpknc")
