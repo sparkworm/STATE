@@ -22,7 +22,7 @@ void fragment() {
 	//noise_val = 1.0-noise_val;
 	//noise_val = pow(noise_val,2);
 	//noise_val = smoothstep(0.3, 0.4, noise_val) * noise_val;
-	COLOR.rgb -= noise_val;
+	COLOR.rgba -= noise_val;
 }
 
 //void light() {
