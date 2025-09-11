@@ -6,16 +6,19 @@
 class_name DecalTransport
 extends CharacterBody2D
 
-var decal: BloodDecal
-var start_time: int
-
-@onready var velocity_component: VelocityComponent = $VelocityComponent
-
 ## Drag graphed as a function of time.
 @export var drag_curve: CurveTexture
 
+var decal: BloodDecal
+var start_time: int
+## The change in rotation, in radians per second.
+var rotational_velocity: float
+## The amount by which rotational_velocity decreases per second
+var rotational_drag: float
+
+@onready var velocity_component: VelocityComponent = $VelocityComponent
+
 func _ready() -> void:
-	print("started")
 	start_time = Time.get_ticks_msec()
 	# set the velocity of velocity_component
 	velocity_component.velocity = velocity
@@ -26,7 +29,7 @@ func _ready() -> void:
 		return
 	add_child(decal)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	velocity_component.decel = \
 			drag_curve.curve.sample(float(Time.get_ticks_msec() - start_time) / 1000)
 
@@ -36,7 +39,12 @@ func _physics_process(delta: float) -> void:
 	# if there's been a collision, or if transport is basically stoppped, transform to decal
 	if collision != null or velocity_component.velocity.length() < 1.0:
 		transform_to_decal()
+	
+	# handle rotation
+	rotation += rotational_velocity * delta
+	rotational_velocity = max(0, rotational_velocity - rotational_drag * delta)
 
+## Make Level add an equivalent BloodDecal, then kill self
 func transform_to_decal() -> void:
 	remove_child(decal)
 	decal.position = position
