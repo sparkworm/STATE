@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=4 uid="uid://dpv7q5qho85yi"]
+[gd_scene load_steps=5 format=4 uid="uid://dpv7q5qho85yi"]
 
 [ext_resource type="PackedScene" uid="uid://sxyrpr61lxuf" path="res://scenes/parent/level.tscn" id="1_jbqir"]
 [ext_resource type="PackedScene" uid="uid://tih2ouwvuyvd" path="res://scenes/effects/blood_decal.tscn" id="2_yautc"]
-[ext_resource type="PackedScene" uid="uid://brr4hjuf643am" path="res://scenes/effects/blood_spurt_particles.tscn" id="3_48ne7"]
 [ext_resource type="PackedScene" uid="uid://8ywbtdqu13np" path="res://scenes/interactable/dropped_glock_17.tscn" id="3_fr1um"]
 [ext_resource type="PackedScene" uid="uid://ck3ujtyyckoqq" path="res://scenes/characters/test_dummy.tscn" id="4_v45ci"]
 
@@ -36,9 +35,6 @@ rotation = -0.56174
 
 [node name="BloodDecal4" parent="Decals/BloodLayer" index="3" instance=ExtResource("2_yautc")]
 position = Vector2(44, 24)
-
-[node name="BloodSpurtParticles" parent="Effects" index="0" instance=ExtResource("3_48ne7")]
-position = Vector2(39, 8)
 
 [node name="DroppedGlock17" parent="DroppedItems" index="0" instance=ExtResource("3_fr1um")]
 position = Vector2(33, -19)

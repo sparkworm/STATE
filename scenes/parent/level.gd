@@ -12,6 +12,7 @@ func _ready() -> void:
 	MessageBus.debug_pixel_spawned.connect(spawn_debug_pixel)
 	MessageBus.dropped_item_spawned.connect(spawn_dropped_item)
 	MessageBus.decal_spawned.connect(spawn_decal)
+	MessageBus.temporary_particles_spawned.connect(spawn_temporary_particles)
 
 ## Adds specified projectile as a child of projectiles
 func spawn_projectile(proj: Projectile) -> void:
@@ -34,3 +35,9 @@ func spawn_dropped_item(dropped_item: DroppedItem) -> void:
 ## Spawns the specified Node2D in decals
 func spawn_decal(decal: Node2D) -> void:
 	decals.add_child(decal)
+
+func spawn_temporary_particles(particles: GPUParticles2D) -> void:
+	particles.emitting = true
+	var kill_particle_timer: SceneTreeTimer = get_tree().create_timer(particles.lifetime)
+	kill_particle_timer.timeout.connect(particles.queue_free)
+	effects.add_child(particles)

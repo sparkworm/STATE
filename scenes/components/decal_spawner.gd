@@ -13,6 +13,7 @@ extends Node2D
 @export_range(0,180) var spread: float
 @export_range(0,1) var reverse_direction_chance: float
 
+
 func _ready() -> void:
 	spread = deg_to_rad(spread)
 

@@ -25,6 +25,8 @@ signal player_health_changed(new_health: float)
 signal dropped_item_spawned(dropped_item: DroppedItem, pos: Vector2)
 ## Spawns a decal, such as that of a blood puddle in Level
 signal decal_spawned(decal: Node2D)
+## Spawns particles in Level which is terminated upon completion
+signal temporary_particles_spawned(particles: GPUParticles2D)
 #endregion
 
 ## Called to place a single white pixel at a given location.  Useful for debugging purposes

@@ -117,5 +117,11 @@ func take_hit(damage: int, direction := Vector2.ZERO) -> void:
 	cpt_health.take_damage(damage)
 	if direction == Vector2.ZERO:
 		direction = Vector2.from_angle(randf_range(0,2*PI))
-	print("direction: ", direction)
 	decal_spawner.spawn_decals(direction)
+	
+	# TEMPORARY
+	var spurt_particles: GPUParticles2D = \
+			preload("res://scenes/effects/blood_spurt_particles.tscn").instantiate()
+	spurt_particles.position = global_position
+	spurt_particles.rotation = (-direction).angle()
+	MessageBus.temporary_particles_spawned.emit(spurt_particles)
