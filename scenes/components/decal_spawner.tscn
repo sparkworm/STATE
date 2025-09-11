@@ -4,9 +4,9 @@
 
 [node name="DecalSpawner" type="Node2D"]
 script = ExtResource("1_pvyi1")
-decals_to_spawn = 2
-decal_variation = 1
+num_decal_min = 1
+num_decal_max = 3
 decal_launch_force = 30.0
 launch_force_variation = 10.0
-spread = 63.243
+spread = 40.0
 reverse_direction_chance = 0.5

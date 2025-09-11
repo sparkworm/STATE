@@ -1,18 +1,23 @@
 class_name DecalSpawner
 extends Node2D
 
+## The decal that is meant to be spawned by this DecalSpawner
 @export var decal_scene: PackedScene = preload("res://scenes/effects/blood_decal.tscn")
-@export var decals_to_spawn: int
-@export var decal_variation: int
+## The min number of decals to be spawned by this DecalSpawner
+@export var num_decal_min: int
+## The max number of decals to be spawned by this DecalSpawner
+@export var num_decal_max: int
+## The magnitude of the impulse that will be applied to the DecalTransport objects 
 @export var decal_launch_force: float
 @export var launch_force_variation: float
 @export_range(0,180) var spread: float
 @export_range(0,1) var reverse_direction_chance: float
+
 func _ready() -> void:
 	spread = deg_to_rad(spread)
 
 func spawn_decals(direction := Vector2.ZERO) -> void:
-	var num_to_spawn: int = max(1, decals_to_spawn + randi_range(-decal_variation, decal_variation))
+	var num_to_spawn: int = randi_range(num_decal_min, num_decal_max)
 	for num in range(num_to_spawn):
 		var transport: DecalTransport = \
 				preload("res://scenes/effects/decal_transport.tscn").instantiate()

@@ -20,7 +20,6 @@ func _physics_process(_delta: float) -> void:
 		transform_to_decal()
 
 func transform_to_decal() -> void:
-	print("transforming to decal")
 	remove_child(decal)
 	decal.position = position
 	decal.rotation = rotation

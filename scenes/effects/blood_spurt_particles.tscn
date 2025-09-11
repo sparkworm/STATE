@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://brr4hjuf643am"]
+
+[sub_resource type="Gradient" id="Gradient_44jdr"]
+offsets = PackedFloat32Array(0.42446, 0.856115, 0.978417)
+colors = PackedColorArray(1, 0, 0, 0.921569, 0.662745, 0, 0, 0.752941, 0.662745, 0, 0, 0.145098)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p102m"]
+gradient = SubResource("Gradient_44jdr")
+
+[sub_resource type="Curve" id="Curve_44jdr"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 43.8202), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p102m"]
+curve = SubResource("Curve_44jdr")
+
+[sub_resource type="Curve" id="Curve_nwbvv"]
+_limits = [0.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0.133333, 3.14607), 0.0, -1.76565, 0, 0, Vector2(1, 0.337079), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nxqo5"]
+curve = SubResource("Curve_nwbvv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7lw7g"]
+lifetime_randomness = 0.23
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 90.0
+initial_velocity_min = 68.96
+initial_velocity_max = 93.59
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 163.15
+gravity = Vector3(0, 0, 0)
+damping_max = 10.0
+damping_curve = SubResource("CurveTexture_p102m")
+scale_max = 2.45
+scale_over_velocity_min = 5.0
+scale_over_velocity_max = 20.0
+scale_over_velocity_curve = SubResource("CurveTexture_nxqo5")
+color_ramp = SubResource("GradientTexture1D_p102m")
+hue_variation_min = -0.04
+hue_variation_max = 0.04
+turbulence_noise_strength = 7.6
+
+[node name="BloodSpurtParticles" type="GPUParticles2D"]
+amount = 30
+lifetime = 0.33
+explosiveness = 0.99
+randomness = 0.44
+process_material = SubResource("ParticleProcessMaterial_7lw7g")
