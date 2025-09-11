@@ -32,9 +32,10 @@ func spawn_decals(direction := Vector2.ZERO) -> void:
 			angle += PI
 		var force: float = \
 				decal_launch_force + randf_range(-launch_force_variation, launch_force_variation)
-		transport.apply_impulse(Vector2.from_angle(angle) * decal_launch_force)
+		#transport.apply_impulse(Vector2.from_angle(angle) * decal_launch_force)
 		transport.decal = decal_scene.instantiate()
 		transport.decal.pick_random_frame()
 		transport.position = global_position
-
+		
+		transport.velocity = Vector2.from_angle(angle) * decal_launch_force
 		MessageBus.decal_spawned.emit(transport)

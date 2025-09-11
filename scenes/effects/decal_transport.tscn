@@ -1,16 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://54fjq33833xr"]
+[gd_scene load_steps=6 format=3 uid="uid://54fjq33833xr"]
 
 [ext_resource type="Script" uid="uid://bjna5r7b2k722" path="res://scenes/effects/decal_transport.gd" id="1_j1atj"]
+[ext_resource type="Script" uid="uid://cowfbn3cfogus" path="res://scenes/components/cpt_velocity.gd" id="2_dc2yg"]
+
+[sub_resource type="Curve" id="Curve_dc2yg"]
+_limits = [0.0, 500.0, 0.0, 1.0]
+_data = [Vector2(0, 250), 0.0, 252.895, 0, 0, Vector2(1, 500), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_oafr2"]
+curve = SubResource("Curve_dc2yg")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j1atj"]
 radius = 11.0
 
-[node name="DecalTransport" type="RigidBody2D"]
+[node name="DecalTransport" type="CharacterBody2D"]
 collision_layer = 0
-gravity_scale = 0.0
-linear_damp = 2.0
-angular_damp = 0.5
 script = ExtResource("1_j1atj")
+drag_curve = SubResource("CurveTexture_oafr2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_j1atj")
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("2_dc2yg")
+max_speed = 1000.0
+decel = 1.0
+metadata/_custom_type_script = "uid://cowfbn3cfogus"
