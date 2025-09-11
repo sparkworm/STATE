@@ -50,5 +50,15 @@ angular_damp = 0.0
 item_drop_force = 100.0
 
 [node name="TestDummy" parent="Characters" index="1" instance=ExtResource("4_v45ci")]
-position = Vector2(19, -56)
-rotation = 2.00692
+position = Vector2(24, -72)
+rotation = 1.57079
+
+[node name="TestDummy2" parent="Characters" index="2" instance=ExtResource("4_v45ci")]
+position = Vector2(-24, -71)
+rotation = 1.57079
+
+[node name="TestDummy3" parent="Characters" index="3" instance=ExtResource("4_v45ci")]
+position = Vector2(-74, -38)
+
+[node name="TestDummy4" parent="Characters" index="4" instance=ExtResource("4_v45ci")]
+position = Vector2(-72, 9)
