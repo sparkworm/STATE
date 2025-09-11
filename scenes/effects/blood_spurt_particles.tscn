@@ -28,6 +28,7 @@ lifetime_randomness = 0.2
 particle_flag_disable_z = true
 angle_min = 1.07288e-05
 angle_max = 90.0
+spread = 20.0
 initial_velocity_min = 68.96
 initial_velocity_max = 93.59
 angular_velocity_min = -1.60933e-05
