@@ -112,7 +112,9 @@ func drop_item() -> void:
 	MessageBus.dropped_item_spawned.emit(new_dropped_item)
 	set_item_held(null)
 
-func take_hit(damage: int, direction := Vector2.ZERO) -> void:
+func take_hit(hit_data: BulletHitResource) -> void:
+	var damage: int = hit_data.bullet_damage
+	var direction := hit_data.bullet_dir
 	print(character_name, " took ", damage, " damage!")
 	cpt_health.take_damage(damage)
 	if direction == Vector2.ZERO:
@@ -120,8 +122,10 @@ func take_hit(damage: int, direction := Vector2.ZERO) -> void:
 	decal_spawner.spawn_decals(direction)
 	
 	# TEMPORARY
+	var point := hit_data.collision_point
 	var spurt_particles: GPUParticles2D = \
 			preload("res://scenes/effects/blood_spurt_particles.tscn").instantiate()
-	spurt_particles.position = global_position
-	spurt_particles.rotation = (-direction).angle()
+	spurt_particles.position = point
+	#spurt_particles.rotation = (-direction).angle()
+	spurt_particles.rotation = hit_data.collision_normal.angle()
 	MessageBus.temporary_particles_spawned.emit(spurt_particles)
