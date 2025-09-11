@@ -52,7 +52,7 @@ func collide() -> void:
 	var collider: Object = ray_cast.get_collider()
 	if collider.has_method("take_hit"):
 		var hit_data: BulletHitResource = \
-				BulletHitResource.new(damage, velocity.normalized(), 
+				BulletHitResource.new(damage, velocity.normalized(),
 				ray_cast.get_collision_point(), ray_cast.get_collision_normal())
 		collider.take_hit(hit_data)
 	queue_free()

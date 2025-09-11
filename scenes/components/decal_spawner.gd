@@ -7,9 +7,9 @@ extends Node2D
 @export var num_decal_min: int
 ## The max number of decals to be spawned by this DecalSpawner
 @export var num_decal_max: int
-## The magnitude of the velocity that will be assigned to the DecalTransport objects 
+## The magnitude of the velocity that will be assigned to the DecalTransport objects
 @export var decal_launch_velocity: float
-## decal_launch_velocity will have randf_range(-value, +value) for this value added to it when 
+## decal_launch_velocity will have randf_range(-value, +value) for this value added to it when
 ## assigning velocity to a DecalTransport
 @export var launch_velocity_variation: float
 ## The spawned DecalTransport may have a rotational velocity from (-value, +value) for this value
@@ -43,6 +43,8 @@ func spawn_decals(direction := Vector2.ZERO) -> void:
 		transport.position = global_position
 		transport.rotational_velocity = \
 				randf_range(-rotational_velocity_max, rotational_velocity_max)
-		
-		transport.velocity = Vector2.from_angle(angle) * decal_launch_velocity
+
+		transport.velocity = Vector2.from_angle(angle) * (decal_launch_velocity \
+				+ randf_range(-launch_velocity_variation, launch_velocity_variation))
+		print(transport.velocity.length())
 		MessageBus.decal_spawned.emit(transport)

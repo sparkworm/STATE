@@ -120,7 +120,7 @@ func take_hit(hit_data: BulletHitResource) -> void:
 	if direction == Vector2.ZERO:
 		direction = Vector2.from_angle(randf_range(0,2*PI))
 	decal_spawner.spawn_decals(direction)
-	
+
 	# TEMPORARY
 	var point := hit_data.collision_point
 	var spurt_particles: GPUParticles2D = \

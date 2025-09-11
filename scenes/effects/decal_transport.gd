@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	# if there's been a collision, or if transport is basically stoppped, transform to decal
 	if collision != null or velocity_component.velocity.length() < 1.0:
 		transform_to_decal()
-	
+
 	# handle rotation
 	rotation += rotational_velocity * delta
 	rotational_velocity = max(0, rotational_velocity - rotational_drag * delta)
