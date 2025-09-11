@@ -13,7 +13,6 @@ func _ready() -> void:
 	MessageBus.dropped_item_spawned.connect(spawn_dropped_item)
 	MessageBus.decal_spawned.connect(spawn_decal)
 
-
 ## Adds specified projectile as a child of projectiles
 func spawn_projectile(proj: Projectile) -> void:
 	projectiles.add_child(proj)

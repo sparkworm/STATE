@@ -23,6 +23,8 @@ extends CharacterBody2D
 @onready var pickup_area: Area2D = %PickupArea
 ## The component keeping track of the Character's health
 @onready var cpt_health: HealthComponent = %CptHealth
+## Manages spawning the blood decals
+@onready var decal_spawner: DecalSpawner = $DecalSpawner
 
 func _ready() -> void:
 	# set starting item
@@ -110,16 +112,10 @@ func drop_item() -> void:
 	MessageBus.dropped_item_spawned.emit(new_dropped_item)
 	set_item_held(null)
 
-func take_hit(damage: int) -> void:
+func take_hit(damage: int, direction := Vector2.ZERO) -> void:
 	print(character_name, " took ", damage, " damage!")
 	cpt_health.take_damage(damage)
-	var transport: DecalTransport = \
-			preload("res://scenes/effects/decal_transport.tscn").instantiate()
-	print("applying impulse")
-	transport.apply_impulse(Vector2.from_angle(randf_range(0,2*PI)) * item_drop_force)
-	transport.decal = blood_decal_scene.instantiate()
-	transport.decal.pick_random_frame()
-	transport.position = position
-
-
-	MessageBus.decal_spawned.emit(transport)
+	if direction == Vector2.ZERO:
+		direction = Vector2.from_angle(randf_range(0,2*PI))
+	print("direction: ", direction)
+	decal_spawner.spawn_decals(direction)

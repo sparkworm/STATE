@@ -11,6 +11,7 @@ bullet_trail = ExtResource("3_tclso")
 
 [node name="RayCast" type="RayCast2D" parent="." index="0"]
 target_position = Vector2(0, 0)
+collision_mask = 3
 
 [node name="TimerTermination" type="Timer" parent="." index="1"]
 wait_time = 500000.0

@@ -33,4 +33,5 @@ func handle_movement() -> void:
 ## deleted upon striking something)
 func handle_collision(pos: Vector2) -> void:
 	has_collided = true
-	points[points.size()-1] = pos
+	if points.size() > 0:
+		points[points.size()-1] = pos

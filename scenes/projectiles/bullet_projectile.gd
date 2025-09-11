@@ -51,7 +51,7 @@ func collide() -> void:
 	# TODO: complete logic for transfering damage to collider
 	var collider: Object = ray_cast.get_collider()
 	if collider.has_method("take_hit"):
-		collider.take_hit(damage)
+		collider.take_hit(damage, velocity.normalized())
 	queue_free()
 
 ## Called when the termination timer reaches zero, killing the bullet
