@@ -22,7 +22,8 @@ func _process(_delta: float) -> void:
 func handle_movement() -> void:
 	# NOTE: the bullet should never be null
 	if bullet == null:
-		print("WARNING: bullet is null")
+		#print("WARNING: bullet is null")
+		queue_free()
 		return
 
 	add_point(bullet.global_position)
@@ -35,3 +36,5 @@ func handle_collision(pos: Vector2) -> void:
 	has_collided = true
 	if points.size() > 0:
 		points[points.size()-1] = pos
+	#else:
+		#queue_free()
