@@ -19,7 +19,10 @@ signal magazine_ejected(mag: Magazine)
 @export var reload_timer: Timer
 
 ## Particle emitter for muzzle flash
-@onready var fire_particles: GPUParticles2D = $ProjectileSpawner/FireParticles
+@export var fire_particles_scene: PackedScene \
+		= preload("res://scenes/effects/fire_particles.tscn")
+
+@onready var projectile_spawner: ProjectileSpawner = $ProjectileSpawner
 
 func _start_use() -> void:
 	if can_use():
@@ -29,11 +32,21 @@ func _continue_use() -> void:
 	if can_use() and full_auto == true:
 		fire()
 
+## Makes WieldableGun fire its projectile.  Should only be called if can_use() is true
 func fire() -> void:
+	# spawn projectile
 	var rot: Vector2 = Vector2.from_angle(get_global_transform().get_rotation())
 	proj_spawner.spawn_projectile(rot)
+	# consume ammo
 	cpt_ammo.decrement_ammo()
+	# create fire particles
+	var fire_particles: GPUParticles2D = fire_particles_scene.instantiate()
 	fire_particles.emitting = true
+	fire_particles.position = projectile_spawner.global_position
+	fire_particles.rotation = global_rotation
+	get_tree().create_timer(fire_particles.lifetime).timeout.connect(fire_particles.queue_free)
+	MessageBus.effect_spawned.emit(fire_particles)
+	# start fire cooldown
 	fire_timer.start()
 
 ## Return whether the weapon can fire, which is only true if there's ammo, and both the fire and
