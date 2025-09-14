@@ -7,7 +7,7 @@ extends State
 ## state
 @export var vision_cone: Area2D
 ## A raycast for testing if there is line of sight with a given character
-@export var los_check: RayCast2D
+@export var los_check: LineOfSightCheck
 ## The maximum distance the enemy can be for the guard to initiate an attack.  Any further and
 ## the guard will merely pursue
 @export var attack_distance: float = 200
@@ -20,9 +20,10 @@ extends State
 
 var enemy_is_in_vision_cone: bool = false
 
-func _ready() -> void:
+func _set_target(new_value) -> void:
+	super._set_target(new_value)
 	if not target is Character:
-		print("WARNING: Guard State only meant to be used with Character as target")
+		push_error("WARNING: GuardState only meant to be used with Character as target")
 
 ## State equivalent of _process().  Only called when state is active
 func _update(_delta: float) -> void:
@@ -37,14 +38,8 @@ func _physics_update(_delta: float) -> void:
 	pass
 
 func player_in_vision(body: Node2D) -> void:
-	# check line of sight to player
-	los_check.global_position = target.global_position
-	los_check.target_position = body.global_position - target.global_position
-	los_check.force_raycast_update()
-	var first_hit: Node2D = los_check.get_collider()
-	print(first_hit)
 	# if there is line of sight to the player
-	if first_hit != null and first_hit.is_in_group("player"):
+	if los_check.check_line_of_sight(target, body):
 		if abs((body.global_position - target.global_position).length()) <= attack_distance:
 			state_changed.emit(attack_state, {"attack_target":body})
 		else:

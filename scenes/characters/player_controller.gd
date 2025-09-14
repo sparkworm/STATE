@@ -12,9 +12,7 @@ func _ready() -> void:
 	player_inventory.inventory_changed.connect(MessageBus.update_hud.emit)
 
 func _physics_process(delta: float) -> void:
-	body.head_and_torso_look_towards(body.get_global_mouse_position())
-	## NOTE: might even move this to Character's _physics_process()
-	player.update_move_collision()
+	player.face_towards(body.get_global_mouse_position())
 	handle_movement(delta)
 
 func _process(_delta: float) -> void:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjkq64ugh8t4k"]
+[gd_scene load_steps=11 format=3 uid="uid://cjkq64ugh8t4k"]
 
 [ext_resource type="PackedScene" uid="uid://bou5t0p158o7h" path="res://scenes/parent/character.tscn" id="1_367j4"]
 [ext_resource type="Texture2D" uid="uid://drgyodho8wjm6" path="res://textures/character/shoulders_1.png" id="2_2gffd"]
 [ext_resource type="PackedScene" uid="uid://c7eup1hsit4r" path="res://scenes/wieldable/glock_17.tscn" id="2_5a511"]
+[ext_resource type="PackedScene" uid="uid://dymb8c6bx25oj" path="res://scenes/components/line_of_sight_check.tscn" id="3_j2y55"]
 [ext_resource type="Texture2D" uid="uid://dgey3cy1dkivx" path="res://textures/character/arms_1.png" id="3_tyweb"]
 [ext_resource type="Texture2D" uid="uid://d0gk2kblt6qpi" path="res://textures/character/head_1.png" id="4_5a511"]
 [ext_resource type="Script" uid="uid://c2hr3xp4wr5mq" path="res://scenes/components/state_machine/state_machine.gd" id="5_tyweb"]
@@ -14,9 +15,7 @@
 character_name = "Guard"
 starting_item = ExtResource("2_5a511")
 
-[node name="LineOfSightCheck" type="RayCast2D" parent="." index="1"]
-top_level = true
-collision_mask = 3
+[node name="LineOfSightCheck" parent="." index="1" instance=ExtResource("3_j2y55")]
 
 [node name="Torso" parent="Body" index="1"]
 texture = ExtResource("2_2gffd")
@@ -24,6 +23,9 @@ texture = ExtResource("2_2gffd")
 [node name="Arms" parent="Body/Torso" index="0"]
 position = Vector2(1, 0)
 texture = ExtResource("3_tyweb")
+
+[node name="ItemHolder" parent="Body/Torso/Arms" index="0"]
+position = Vector2(5, 0)
 
 [node name="Head" parent="Body" index="2"]
 texture = ExtResource("4_5a511")
@@ -48,4 +50,6 @@ attack_state = NodePath("../AttackState")
 
 [node name="PursueState" parent="Controller" index="1" instance=ExtResource("8_j2y55")]
 
-[node name="AttackState" parent="Controller" index="2" instance=ExtResource("9_jh88t")]
+[node name="AttackState" parent="Controller" index="2" node_paths=PackedStringArray("los_check", "pursue_state") instance=ExtResource("9_jh88t")]
+los_check = NodePath("../../LineOfSightCheck")
+pursue_state = NodePath("../PursueState")

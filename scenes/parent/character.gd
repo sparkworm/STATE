@@ -29,7 +29,6 @@ extends CharacterBody2D
 func _ready() -> void:
 	# set starting item
 	if starting_item != null:
-		print("Giving player starting item")
 		body.set_item_held(starting_item.instantiate())
 
 	cpt_health.health_depleted.connect(queue_free)
@@ -47,6 +46,10 @@ func get_item_held() -> Wieldable:
 ## TODO: Drop old item instead of merely deleting it.
 func set_item_held(new_item: Wieldable) -> void:
 	body.set_item_held(new_item)
+
+func face_towards(dir: Vector2) -> void:
+	body.head_and_torso_look_towards(dir)
+	update_move_collision()
 
 ## Moves the CollisionShape to match the rotation of the torso sprite
 func update_move_collision() -> void:
@@ -78,6 +81,7 @@ func reload() -> bool:
 				#player.inventory.individual_ammo[weapon.ID] -= 1 # how did this even work?
 				inventory.decrement_ammo(Globals.WeaponAmmo[weapon.ID])
 				weapon.round_reload()
+		## TODO: fix this so that NPCs reloading don't fuck up the HUD
 		MessageBus.update_hud.emit()
 		return true
 

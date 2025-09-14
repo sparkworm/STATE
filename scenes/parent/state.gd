@@ -17,6 +17,9 @@ func _update(_delta: float) -> void:
 func _physics_update(_delta: float) -> void:
 	pass
 
+func _set_target(new_value: Node) -> void:
+	target = new_value
+
 ## Called when the state is made active
 func _enter(args:={}) -> void:
 	pass

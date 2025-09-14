@@ -1,3 +1,5 @@
+## TODO: Create a separate state for going to the last known position of a player as opposed to
+## pursuing them while they are in line of sight
 class_name PursueState
 extends State
 

@@ -16,7 +16,7 @@ func _ready() -> void:
 			# connect state's state_changed signal so that it may initiate a state change
 			state.state_changed.connect(change_state_to)
 			# set state's target so that it may actually perform actions with said target
-			state.target = target
+			state._set_target(target)
 	if active_state != null:
 		change_state_to(active_state)
 	else:

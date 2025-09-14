@@ -66,4 +66,4 @@ position = Vector2(-72, 9)
 
 [node name="Guard01" parent="Characters" index="5" instance=ExtResource("5_48ne7")]
 position = Vector2(117, -17)
-rotation = 1.91967
+rotation = 1.94912
