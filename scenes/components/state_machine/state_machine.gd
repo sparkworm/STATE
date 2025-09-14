@@ -30,6 +30,9 @@ func _physics_process(delta: float) -> void:
 
 ## Changes active state to specified state
 func change_state_to(new_state: State, args:={}) -> void:
-	active_state._exit()
+	print("Changing state to ", new_state)
+	# used to avoid exiting on the first state
+	if active_state != new_state:
+		active_state._exit()
 	active_state = new_state
 	active_state._enter(args)
