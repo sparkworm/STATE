@@ -6,6 +6,9 @@ extends Node
 ## NOTE: This must never be called if the state is inactive.
 signal state_changed(new_state: State)
 
+## The object that the state machine is meant to control
+var target: Node
+
 ## State equivalent of _process().  Only called when state is active
 func _update(_delta: float) -> void:
 	pass

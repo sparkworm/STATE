@@ -4,14 +4,19 @@ extends Node
 
 ## Exported to set first state, but will be set to new state when states change
 @export var active_state: State
+## The object that the state machine is meant to control
+@export var target: Node
 
 func _ready() -> void:
-	# connect state_changed signals of state to the appropriate function
+	# initialize every child state
 	for state: State in get_children():
 		if state == null:
 			print("WARNING, non-state cast as State")
 		else:
+			# connect state's state_changed signal so that it may initiate a state change
 			state.state_changed.connect(change_state_to)
+			# set state's target so that it may actually perform actions with said target
+			state.target = target
 	if active_state != null:
 		change_state_to(active_state)
 	else:
