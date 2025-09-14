@@ -44,12 +44,23 @@ const WeaponAmmo: Dictionary[Wieldables, AmmoTypes] = {
 	Wieldables.MOSSBERG500 : AmmoTypes.TWELVE_GAUGE,
 }
 
+## Contains the Wieldable scene associated with a given ID
 const WieldableScene: Dictionary[Wieldables, PackedScene] = {
 	Wieldables.GLOCK17 : preload("res://scenes/wieldable/glock_17.tscn")
 }
 
+## Contains the DroppedItem scene associated with a given ID
 const DroppedItemScene: Dictionary[Wieldables, PackedScene] = {
 	Wieldables.GLOCK17 : preload("res://scenes/interactable/dropped_glock_17.tscn")
+}
+
+## Declares the ammount of ammo that a mag for a given weapon ought to hold.
+## [br][br]
+## This is a strange way of doing this (alternatively ammo_cpt could have a capacity attribute,
+## or WieldableGun could) but this may allow for some flexibility in the future regarding
+## differing mag sizes, though I'm not sure I want to do that.
+const MagazineCapacity: Dictionary[Wieldables, int] = {
+	Wieldables.GLOCK17 : 17
 }
 
 var current_scene_idx: SceneAccess.IDX = SceneAccess.IDX.MENU

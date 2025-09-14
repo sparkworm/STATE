@@ -24,6 +24,10 @@ signal magazine_ejected(mag: Magazine)
 
 @onready var projectile_spawner: ProjectileSpawner = $ProjectileSpawner
 
+func _ready() -> void:
+	# spawn the gun with a full mag
+	cpt_ammo.ammo = Globals.MagazineCapacity[ID]
+
 func _start_use() -> void:
 	if can_use():
 		fire()
