@@ -26,17 +26,17 @@ func _ready() -> void:
 
 ## State equivalent of _process().  Only called when state is active
 func _update(_delta: float) -> void:
-	pass
+	for body: Node2D in vision_cone.get_overlapping_bodies():
+		# if the character who entered is not a player, don't bother them.
+		# NOTE: this would need to be revised if I ever wanted multiple factions or player allies
+		if body.is_in_group("player"):
+			player_in_vision(body)
 
 ## State equivalent of _physics_process().  Only called when state is active
 func _physics_update(_delta: float) -> void:
 	pass
 
-func body_entered_vision(body: Node2D) -> void:
-	# if the character who entered is not a player, don't bother them.
-	# NOTE: this would need to be revised if I ever wanted multiple factions or player allies
-	if not body.is_in_group("player"):
-		return
+func player_in_vision(body: Node2D) -> void:
 	# check line of sight to player
 	los_check.global_position = target.global_position
 	los_check.target_position = body.global_position - target.global_position
@@ -53,8 +53,10 @@ func body_entered_vision(body: Node2D) -> void:
 
 ## Called when the state is made active
 func _enter(args:={}) -> void:
-	vision_cone.body_entered.connect(body_entered_vision)
+	#vision_cone.body_entered.connect(body_entered_vision)
+	pass
 
 ## Called before state is made inactive
 func _exit() -> void:
-	vision_cone.body_entered.disconnect(body_entered_vision)
+	#vision_cone.body_entered.disconnect(body_entered_vision)
+	pass
