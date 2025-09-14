@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dymb8c6bx25oj"]
+
+[ext_resource type="Script" uid="uid://dt66vqtwa08we" path="res://scenes/components/line_of_sight_check.gd" id="1_nlij4"]
+
+[node name="LineOfSightCheck" type="RayCast2D"]
+top_level = true
+collision_mask = 3
+script = ExtResource("1_nlij4")
