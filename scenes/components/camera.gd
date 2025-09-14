@@ -12,7 +12,9 @@ func _physics_process(_delta: float) -> void:
 	apply_offset()
 
 func follow_subject() -> void:
-	position = subject.position
+	# TODO: improve logic?  maybe make camera follow the killer?
+	if subject != null:
+		position = subject.position
 
 func apply_offset() -> void:
 	offset = (get_global_mouse_position()-get_screen_center_position()) * look_strength

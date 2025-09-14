@@ -50,6 +50,7 @@ attack_state = NodePath("../AttackState")
 
 [node name="PursueState" parent="Controller" index="1" instance=ExtResource("8_j2y55")]
 
-[node name="AttackState" parent="Controller" index="2" node_paths=PackedStringArray("los_check", "pursue_state") instance=ExtResource("9_jh88t")]
+[node name="AttackState" parent="Controller" index="2" node_paths=PackedStringArray("los_check", "pursue_state", "guard_state") instance=ExtResource("9_jh88t")]
 los_check = NodePath("../../LineOfSightCheck")
 pursue_state = NodePath("../PursueState")
+guard_state = NodePath("../GuardState")

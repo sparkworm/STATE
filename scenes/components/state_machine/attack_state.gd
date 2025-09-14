@@ -9,6 +9,7 @@ extends State
 
 @export_category("Other States")
 @export var pursue_state: State
+@export var guard_state: State
 
 ## The Character that target is attempting to attack.  Should always be provided when
 ## AttackState is entered
@@ -24,6 +25,10 @@ func _set_target(new_value) -> void:
 
 ## State equivalent of _process().  Only called when state is active
 func _update(_delta: float) -> void:
+	if attack_target == null:
+		print("Target killed")
+		state_changed.emit(guard_state)
+		return
 	# If the player has gone out of line of sight, switch to purusing.
 	if not los_check.check_line_of_sight(target, attack_target):
 		# NOTE: passing a greater number of parameters than specified
