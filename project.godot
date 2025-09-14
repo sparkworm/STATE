@@ -29,6 +29,11 @@ window/stretch/mode="canvas_items"
 
 enabled=PackedStringArray("res://addons/project_time/plugin.cfg")
 
+[global_group]
+
+enemy="For Characters who are enemies of Player"
+player="Only the player is in this group"
+
 [input]
 
 pause={

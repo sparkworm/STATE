@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://pw1f8os8614a"]
+
+[ext_resource type="Script" uid="uid://dsobrixiyn4ji" path="res://scenes/components/state_machine/guard_state.gd" id="1_dkb37"]
+
+[node name="GuardState" type="Node"]
+script = ExtResource("1_dkb37")
+metadata/_custom_type_script = "uid://dshulhqelpdx8"

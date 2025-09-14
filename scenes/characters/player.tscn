@@ -9,9 +9,8 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kqtwu"]
 
-[node name="Player" node_paths=PackedStringArray("body") instance=ExtResource("1_rp718")]
+[node name="Player" groups=["player"] instance=ExtResource("1_rp718")]
 character_name = "Player"
-body = NodePath("Body")
 
 [node name="CptVelocity" parent="." index="1" instance=ExtResource("4_dyp2m")]
 max_speed = 120.0

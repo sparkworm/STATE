@@ -6,10 +6,6 @@ extends CharacterBody2D
 ## The item that the character will start with in their hands.  Useful for NPCs who should
 ## spawn with a weapon
 @export var starting_item: PackedScene
-## The visible body of the character, which controls the head, torso, arms and legs sprites.
-## [br][br]
-## The body also controls the rotation of the held item.
-@export var body: Body
 ## The force, or more precisely, the impulse, applied to an item when dropped.
 @export var item_drop_force: float
 ## The scene that will be spawned when Character is hit.
@@ -25,6 +21,10 @@ extends CharacterBody2D
 @onready var cpt_health: HealthComponent = %CptHealth
 ## Manages spawning the blood decals
 @onready var decal_spawner: DecalSpawner = $DecalSpawner
+## The visible body of the character, which controls the head, torso, arms and legs sprites.
+## [br][br]
+## The body also controls the rotation of the held item.
+@onready var body: Body = %Body
 
 func _ready() -> void:
 	# set starting item

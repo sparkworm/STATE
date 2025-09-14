@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg0ebho2ksfjr"]
+
+[ext_resource type="Script" uid="uid://d4add1573ed7v" path="res://scenes/components/state_machine/pursue_state.gd" id="1_hpuct"]
+
+[node name="PursueState" type="Node"]
+script = ExtResource("1_hpuct")

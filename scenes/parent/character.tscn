@@ -21,6 +21,7 @@ item_drop_force = 50.0
 shape = SubResource("CapsuleShape2D_yaawu")
 
 [node name="Body" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("4_tlv43")
 metadata/_custom_type_script = "uid://bsrw0qs77aq7d"
 

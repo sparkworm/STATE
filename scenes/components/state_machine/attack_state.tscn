@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg8i0i5xnn4ss"]
+
+[ext_resource type="Script" uid="uid://cjsra1s3enf2" path="res://scenes/components/state_machine/attack_state.gd" id="1_apt8g"]
+
+[node name="AttackState" type="Node"]
+script = ExtResource("1_apt8g")
