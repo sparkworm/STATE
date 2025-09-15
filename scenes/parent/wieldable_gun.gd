@@ -24,9 +24,14 @@ signal magazine_ejected(mag: Magazine)
 
 @onready var projectile_spawner: ProjectileSpawner = $ProjectileSpawner
 
+## if this is true, the weapon will spawn with a full mag.  This is true by default, but will
+## be set false for weapons that are picked up that have been dropped previously.
+var spawn_with_full_ammo: bool = true
+
 func _ready() -> void:
-	# spawn the gun with a full mag
-	cpt_ammo.ammo = Globals.MagazineCapacity[ID]
+	if spawn_with_full_ammo:
+		# spawn the gun with a full mag
+		cpt_ammo.ammo = Globals.MagazineCapacity[ID]
 
 func _start_use() -> void:
 	if can_use():

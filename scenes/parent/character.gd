@@ -111,10 +111,15 @@ func drop_item() -> void:
 	var new_dropped_item: DroppedItem = Globals.DroppedItemScene[item.ID].instantiate()
 	if item is WieldableGun:
 		new_dropped_item.wieldable_ammo = item.cpt_ammo.ammo
+	# ensure that item will spawn with ammo it had previously once picked up again
+	new_dropped_item.spawn_with_full_ammo = false
 	new_dropped_item.position = position
 	new_dropped_item.rotation = randf_range(0,2*PI)
+	# push the item, as if it were "dropped"
 	new_dropped_item.apply_impulse(Vector2.from_angle(body.torso.rotation)*item_drop_force)
+	# spawn item in level
 	MessageBus.dropped_item_spawned.emit(new_dropped_item)
+	# clear item from hand
 	set_item_held(null)
 
 func take_hit(hit_data: BulletHitResource) -> void:
