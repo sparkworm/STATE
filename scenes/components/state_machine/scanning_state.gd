@@ -21,7 +21,7 @@ enum ScanStatus {
 ## The amount target will turn in either direction
 @export var turn_amount: float = PI/3
 ## Turning speed in radians per second
-@export var turn_speed: float = PI/8
+@export var turn_speed: float = PI/2
 
 @export_category("Other States")
 ## State to switch to when spotted enemy is out of attack range
@@ -43,7 +43,7 @@ func _update(_delta: float) -> void:
 	for body: Node2D in vision_cone.get_overlapping_bodies():
 		# if the character who entered is not a player, don't bother them.
 		# NOTE: this would need to be revised if I ever wanted multiple factions or player allies
-		if body.is_in_group("player"):
+		if body.is_in_group("player") and los_check.check_line_of_sight(target, body):
 			state_changed.emit(pursue_state, {"pursue_target":body})
 
 ## State equivalent of _physics_process().  Only called when state is active
