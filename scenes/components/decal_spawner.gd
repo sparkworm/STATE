@@ -46,5 +46,4 @@ func spawn_decals(direction := Vector2.ZERO) -> void:
 
 		transport.velocity = Vector2.from_angle(angle) * (decal_launch_velocity \
 				+ randf_range(-launch_velocity_variation, launch_velocity_variation))
-		print(transport.velocity.length())
 		MessageBus.decal_spawned.emit(transport)

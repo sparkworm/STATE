@@ -17,7 +17,7 @@ func has_ammo_for_weapon(weapon: WieldableGun) -> bool:
 	if weapon.mag_reloadable:
 		for mag: Magazine in magazines[weapon.ID]:
 			if mag.gun_type == weapon.ID:
-				print("Mag found: ", mag)
+				#print("Mag found: ", mag)
 				return true
 		return false
 	if individual_ammo.has(weapon.ID):

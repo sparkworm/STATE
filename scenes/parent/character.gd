@@ -77,7 +77,7 @@ func reload() -> bool:
 			# mag reload
 			if weapon.mag_reloadable:
 				var mag: Magazine = inventory.get_mag_for_reload(weapon)
-				print(mag)
+				#print(mag)
 				weapon.mag_reload(mag)
 			# round reload
 			else:
