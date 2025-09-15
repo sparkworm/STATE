@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckryfj374koy0"]
+
+[ext_resource type="Script" uid="uid://dxg8h4xtftba5" path="res://scenes/components/state_machine/scanning_state.gd" id="1_2u46e"]
+
+[node name="ScanningState" type="Node"]
+script = ExtResource("1_2u46e")

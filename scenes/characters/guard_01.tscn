@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjkq64ugh8t4k"]
+[gd_scene load_steps=13 format=3 uid="uid://cjkq64ugh8t4k"]
 
 [ext_resource type="PackedScene" uid="uid://bou5t0p158o7h" path="res://scenes/parent/character.tscn" id="1_367j4"]
 [ext_resource type="Texture2D" uid="uid://drgyodho8wjm6" path="res://textures/character/shoulders_1.png" id="2_2gffd"]
@@ -10,12 +10,21 @@
 [ext_resource type="PackedScene" uid="uid://pw1f8os8614a" path="res://scenes/components/state_machine/guard_state.tscn" id="7_4jkte"]
 [ext_resource type="PackedScene" uid="uid://bg0ebho2ksfjr" path="res://scenes/components/state_machine/pursue_state.tscn" id="8_j2y55"]
 [ext_resource type="PackedScene" uid="uid://cg8i0i5xnn4ss" path="res://scenes/components/state_machine/attack_state.tscn" id="9_jh88t"]
+[ext_resource type="PackedScene" uid="uid://b8lfamyxupwxt" path="res://scenes/components/state_machine/investigate_state.tscn" id="11_jh88t"]
+[ext_resource type="PackedScene" uid="uid://ckryfj374koy0" path="res://scenes/components/state_machine/scanning_state.tscn" id="12_ibshv"]
 
 [node name="Guard01" groups=["enemy"] instance=ExtResource("1_367j4")]
 character_name = "Guard"
 starting_item = ExtResource("2_5a511")
 
-[node name="LineOfSightCheck" parent="." index="1" instance=ExtResource("3_j2y55")]
+[node name="NavTimer" type="Timer" parent="." index="0"]
+wait_time = 0.1
+
+[node name="NavigationAgent" type="NavigationAgent2D" parent="." index="1"]
+path_desired_distance = 4.0
+target_desired_distance = 4.0
+
+[node name="LineOfSightCheck" parent="." index="3" instance=ExtResource("3_j2y55")]
 
 [node name="Torso" parent="Body" index="1"]
 texture = ExtResource("2_2gffd")
@@ -37,7 +46,7 @@ collision_mask = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/Head/VisionCone" index="0"]
 polygon = PackedVector2Array(0, 0, 200, -75, 225, 0, 200, 75)
 
-[node name="Controller" parent="." index="5" node_paths=PackedStringArray("active_state", "target")]
+[node name="Controller" parent="." index="7" node_paths=PackedStringArray("active_state", "target")]
 script = ExtResource("5_tyweb")
 active_state = NodePath("GuardState")
 target = NodePath("..")
@@ -48,9 +57,28 @@ los_check = NodePath("../../LineOfSightCheck")
 pursue_state = NodePath("../PursueState")
 attack_state = NodePath("../AttackState")
 
-[node name="PursueState" parent="Controller" index="1" instance=ExtResource("8_j2y55")]
+[node name="PursueState" parent="Controller" index="1" node_paths=PackedStringArray("los_check", "nav_agent", "nav_timer", "attack_state", "investigate_state") instance=ExtResource("8_j2y55")]
+los_check = NodePath("../../LineOfSightCheck")
+nav_agent = NodePath("../../NavigationAgent")
+nav_timer = NodePath("../../NavTimer")
+attack_state = NodePath("../AttackState")
+investigate_state = NodePath("../InvestigateState")
 
-[node name="AttackState" parent="Controller" index="2" node_paths=PackedStringArray("los_check", "pursue_state", "guard_state") instance=ExtResource("9_jh88t")]
+[node name="AttackState" parent="Controller" index="2" node_paths=PackedStringArray("los_check", "pursue_state", "investigate_state", "guard_state") instance=ExtResource("9_jh88t")]
+los_check = NodePath("../../LineOfSightCheck")
+pursue_state = NodePath("../PursueState")
+investigate_state = NodePath("../InvestigateState")
+guard_state = NodePath("../GuardState")
+
+[node name="InvestigateState" parent="Controller" index="3" node_paths=PackedStringArray("los_check", "nav_agent", "nav_timer", "pursue_state", "scanning_state") instance=ExtResource("11_jh88t")]
+los_check = NodePath("../../LineOfSightCheck")
+nav_agent = NodePath("../../NavigationAgent")
+nav_timer = NodePath("../../NavTimer")
+pursue_state = NodePath("../PursueState")
+scanning_state = NodePath("../ScanningState")
+
+[node name="ScanningState" parent="Controller" index="4" node_paths=PackedStringArray("vision_cone", "los_check", "pursue_state", "guard_state") instance=ExtResource("12_ibshv")]
+vision_cone = NodePath("../../Body/Head/VisionCone")
 los_check = NodePath("../../LineOfSightCheck")
 pursue_state = NodePath("../PursueState")
 guard_state = NodePath("../GuardState")

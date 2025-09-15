@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8lfamyxupwxt"]
+
+[ext_resource type="Script" uid="uid://137xl8y2nj30" path="res://scenes/components/state_machine/investigate_state.gd" id="1_poepc"]
+
+[node name="InvestigateState" type="Node"]
+script = ExtResource("1_poepc")
+metadata/_custom_type_script = "uid://dshulhqelpdx8"

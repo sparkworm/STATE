@@ -26,8 +26,8 @@ func head_look_towards(global_coords: Vector2) -> void:
 	elif ang_diff < 0 and -ang_diff > max_head_look_angle:
 		head.rotation = -max_head_look_angle
 
-## Makes both the head and torso look towards a point, meaning the head is thus looking straight
-## relative to the torso
+## Makes both the head and torso look towards a point in global coordinates, meaning the head is
+## thus looking straight relative to the torso
 func head_and_torso_look_towards(global_coords: Vector2) -> void:
 	torso.look_at(global_coords)
 	head.look_at(global_coords)

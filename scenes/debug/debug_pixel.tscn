@@ -3,4 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b6rrm6ulhpgs" path="res://textures/white_pixel.png" id="1_nyhni"]
 
 [node name="DebugPixel" type="Sprite2D"]
+modulate = Color(1, 0, 1, 1)
+rotation = 0.785398
+scale = Vector2(3, 3)
 texture = ExtResource("1_nyhni")

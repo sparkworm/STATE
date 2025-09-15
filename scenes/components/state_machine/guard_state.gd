@@ -49,6 +49,7 @@ func player_in_vision(body: Node2D) -> void:
 ## Called when the state is made active
 func _enter(args:={}) -> void:
 	#vision_cone.body_entered.connect(body_entered_vision)
+	#target.body.head.rotation = target.body.torso.rotation
 	pass
 
 ## Called before state is made inactive

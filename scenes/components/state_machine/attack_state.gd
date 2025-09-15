@@ -8,11 +8,15 @@ extends State
 @export var attack_distance: float = 200
 
 @export_category("Other States")
+## Entered if enemy goes out of range
 @export var pursue_state: State
+## Entered if enemy goes out of sight
+@export var investigate_state: State
+## Entered if enemy is killeds
 @export var guard_state: State
 
-## The Character that target is attempting to attack.  Should always be provided when
-## AttackState is entered
+## The Character that target is attempting to attack.  Should always be provided when AttackState
+## is entered
 var attack_target: Character = null
 ## The weapon held by target.
 ## NOTE: if there are to be other weapon types this should be revised

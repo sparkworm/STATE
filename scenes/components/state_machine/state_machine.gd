@@ -8,6 +8,11 @@ extends Node
 @export var target: Node
 
 func _ready() -> void:
+	#call_deferred("initialize_states")
+	initialize_states()
+
+func initialize_states() -> void:
+	await target.ready
 	# initialize every child state
 	for state: State in get_children():
 		if state == null:

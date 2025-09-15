@@ -17,7 +17,9 @@ player = NodePath("../Characters/Player")
 position = Vector2(8, 8)
 tile_set = ExtResource("3_7gmcl")
 
-[node name="WallTiles" type="TileMapLayer" parent="." index="2"]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="2"]
+
+[node name="WallTiles" type="TileMapLayer" parent="NavigationRegion2D" index="0"]
 tile_set = ExtResource("3_7gmcl")
 
 [node name="Projectiles" type="Node2D" parent="." index="3"]

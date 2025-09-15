@@ -47,6 +47,7 @@ func get_item_held() -> Wieldable:
 func set_item_held(new_item: Wieldable) -> void:
 	body.set_item_held(new_item)
 
+## Makes the head and boddy face dir, which should be in global coords
 func face_towards(dir: Vector2) -> void:
 	body.head_and_torso_look_towards(dir)
 	update_move_collision()
