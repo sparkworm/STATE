@@ -72,6 +72,8 @@ func reload() -> bool:
 			print("No ammo for ", weapon.item_name, " reload.")
 			return false
 		else:
+			# spawn text above head for duration of reload indicating that a reload is occuring
+			spawn_floating_text("reloading...", weapon.reload_timer.wait_time)
 			# mag reload
 			if weapon.mag_reloadable:
 				var mag: Magazine = inventory.get_mag_for_reload(weapon)
@@ -140,7 +142,10 @@ func take_hit(hit_data: BulletHitResource) -> void:
 	spurt_particles.rotation = hit_data.collision_normal.angle()
 	MessageBus.temporary_particles_spawned.emit(spurt_particles)
 
-func spawn_floating_text(message: String) -> void:
+## Spawns a floating text above character to indicate an action such as reloading or dialogue
+func spawn_floating_text(message: String, custom_time:=-1.0) -> void:
 	var new_text: Node2D = preload("res://scenes/ui/floating_text.tscn").instantiate()
 	new_text.text = message
+	if custom_time != -1.0:
+		new_text.lifetime = custom_time
 	add_child(new_text)
