@@ -32,7 +32,7 @@ func _update(_delta: float) -> void:
 ## State equivalent of _physics_process().  Only called when state is active
 func _physics_update(_delta: float) -> void:
 	target.move_and_slide()
-	# Only look towards investigate target if it is a bit away.  Prevents a 180 if 
+	# Only look towards investigate target if it is a bit away.  Prevents a 180 if
 	# investigate_target is overshot
 	if investigate_target.distance_to(target.global_position) > 10:
 		target.face_towards(investigate_target)

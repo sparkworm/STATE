@@ -31,7 +31,7 @@ func _ready() -> void:
 	if starting_item != null:
 		body.set_item_held(starting_item.instantiate())
 
-	cpt_health.health_depleted.connect(queue_free)
+	cpt_health.health_depleted.connect(die)
 
 	# DEBUG
 	# For testing purposes, give a magazine for a glock
@@ -149,3 +149,8 @@ func spawn_floating_text(message: String, custom_time:=-1.0) -> void:
 	if custom_time != -1.0:
 		new_text.lifetime = custom_time
 	add_child(new_text)
+
+## Handles death of Character before finally calling queue_free()
+func die() -> void:
+	drop_item()
+	queue_free()

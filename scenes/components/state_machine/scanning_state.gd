@@ -4,7 +4,7 @@ extends State
 ## An enum for describing where the target it in its scan.
 ## [br]TO_FIRST indicates that the target is turning its head for the first time, until the first
 ## maximum is reached
-## [br]TO_SECOND indicates that target has reached the first maximum and is now turning 
+## [br]TO_SECOND indicates that target has reached the first maximum and is now turning
 ## towards the second.
 ## [br]RETURN indicates that target has looked both ways and now returns its head to the center
 enum ScanStatus {
