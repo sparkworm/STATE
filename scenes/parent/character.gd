@@ -139,3 +139,8 @@ func take_hit(hit_data: BulletHitResource) -> void:
 	#spurt_particles.rotation = (-direction).angle()
 	spurt_particles.rotation = hit_data.collision_normal.angle()
 	MessageBus.temporary_particles_spawned.emit(spurt_particles)
+
+func spawn_floating_text(message: String) -> void:
+	var new_text: Node2D = preload("res://scenes/ui/floating_text.tscn").instantiate()
+	new_text.text = message
+	add_child(new_text)

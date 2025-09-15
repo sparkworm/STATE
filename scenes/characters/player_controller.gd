@@ -34,6 +34,9 @@ func _process(_delta: float) -> void:
 		if items.size() > 0:
 			player.drop_item()
 			player.pickup_item(items[0])
+	
+	if Input.is_action_just_pressed("debug_button_1"):
+		player.spawn_floating_text("debug 1 pressed, spawning floating text")
 
 ## Handles player movements based on user inputs
 func handle_movement(delta: float) -> void:
