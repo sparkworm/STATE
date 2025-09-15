@@ -68,7 +68,6 @@ func _physics_update(delta: float) -> void:
 			target.body.head.rotation = \
 					lerp_angle(original_angle-turn_amount, original_angle, angle_progress)
 			if angle_progress >= 1.0:
-				angle_progress = 0.0
 				state_changed.emit(guard_state)
 
 ## Called when the state is made active
@@ -86,4 +85,5 @@ func _enter(args:={}) -> void:
 
 ## Called before state is made inactive
 func _exit() -> void:
-	pass
+	angle_progress = 0.0
+	scan_status = ScanStatus.TO_FIRST
