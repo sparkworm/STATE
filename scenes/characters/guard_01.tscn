@@ -70,7 +70,8 @@ pursue_state = NodePath("../PursueState")
 investigate_state = NodePath("../InvestigateState")
 guard_state = NodePath("../GuardState")
 
-[node name="InvestigateState" parent="Controller" index="3" node_paths=PackedStringArray("los_check", "nav_agent", "nav_timer", "pursue_state", "scanning_state") instance=ExtResource("11_jh88t")]
+[node name="InvestigateState" parent="Controller" index="3" node_paths=PackedStringArray("vision_cone", "los_check", "nav_agent", "nav_timer", "pursue_state", "scanning_state") instance=ExtResource("11_jh88t")]
+vision_cone = NodePath("../../Body/Head/VisionCone")
 los_check = NodePath("../../LineOfSightCheck")
 nav_agent = NodePath("../../NavigationAgent")
 nav_timer = NodePath("../../NavTimer")

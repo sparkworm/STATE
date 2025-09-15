@@ -3,6 +3,8 @@
 class_name InvestigateState
 extends State
 
+## If an enemy enters this cone and there is line of sight, switch to a pursuing state
+@export var vision_cone: Area2D
 ## A raycast for testing if there is line of sight with a given character
 @export var los_check: LineOfSightCheck
 ## The navigator for target
@@ -21,8 +23,11 @@ var investigate_target: Vector2
 
 ## State equivalent of _process().  Only called when state is active
 func _update(_delta: float) -> void:
-	#if los_check.check_line_of_sight():
-	pass
+	for body: Node2D in vision_cone.get_overlapping_bodies():
+		# if the character who entered is not a player, don't bother them.
+		# NOTE: this would need to be revised if I ever wanted multiple factions or player allies
+		if body.is_in_group("player") and los_check.check_line_of_sight(target, body):
+			state_changed.emit(pursue_state, {"pursue_target":body})
 
 ## State equivalent of _physics_process().  Only called when state is active
 func _physics_update(_delta: float) -> void:
@@ -39,15 +44,13 @@ func _set_target(new_value) -> void:
 
 ## Set navigation.
 func nav_update() -> void:
-	print("updating navigation")
-	# NOTE: probably will never happen
+	# if the investigate target has been reached
 	if nav_agent.is_navigation_finished():
 		state_changed.emit(scanning_state)
 		return
 
 	var direction = (nav_agent.get_next_path_position() - target.global_position).normalized()
 	target.velocity = direction * investigate_speed
-	#target.face_towards(nav_agent.get_next_path_position() - target.global_position)
 
 ## Called when the state is made active
 func _enter(args:={}) -> void:
