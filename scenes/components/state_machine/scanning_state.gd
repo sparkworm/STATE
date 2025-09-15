@@ -1,6 +1,18 @@
 class_name ScanningState
 extends State
 
+## An enum for describing where the target it in its scan.
+## [br]TO_FIRST indicates that the target is turning its head for the first time, until the first
+## maximum is reached
+## [br]TO_SECOND indicates that target has reached the first maximum and is now turning 
+## towards the second.
+## [br]RETURN indicates that target has looked both ways and now returns its head to the center
+enum ScanStatus {
+	TO_FIRST,
+	TO_SECOND,
+	RETURN,
+}
+
 ## If an enemy enters this cone and there is line of sight, switch to a pursuing or attacking
 ## state
 @export var vision_cone: Area2D
@@ -17,7 +29,7 @@ extends State
 
 @export var guard_state: State
 
-var first_angle_reached: bool = false
+var scan_status: ScanStatus = ScanStatus.TO_FIRST
 var angle_progress: float = 0.0
 var original_angle: float
 
@@ -36,19 +48,28 @@ func _update(_delta: float) -> void:
 
 ## State equivalent of _physics_process().  Only called when state is active
 func _physics_update(delta: float) -> void:
-	if not first_angle_reached:
-		angle_progress += delta * turn_speed / (turn_amount)
-		target.body.head.rotation = \
-				lerp(original_angle, original_angle+turn_amount, angle_progress)
-		if angle_progress >= 1.0:
-			angle_progress = 0
-			first_angle_reached = true
-	else:
-		angle_progress += delta * turn_speed / (2*turn_amount)
-		target.body.head.rotation = \
-				lerp(original_angle+turn_amount, original_angle-turn_amount, angle_progress)
-		if angle_progress >= 1.0:
-			state_changed.emit(guard_state)
+	match(scan_status):
+		ScanStatus.TO_FIRST:
+			angle_progress += delta * turn_speed / (turn_amount)
+			target.body.head.rotation = \
+					lerp_angle(original_angle, original_angle+turn_amount, angle_progress)
+			if angle_progress >= 1.0:
+				angle_progress = 0
+				scan_status = ScanStatus.TO_SECOND
+		ScanStatus.TO_SECOND:
+			angle_progress += delta * turn_speed / (2*turn_amount)
+			target.body.head.rotation = \
+					lerp_angle(original_angle+turn_amount, original_angle-turn_amount, angle_progress)
+			if angle_progress >= 1.0:
+				angle_progress = 0.0
+				scan_status = ScanStatus.RETURN
+		ScanStatus.RETURN:
+			angle_progress += delta * turn_speed / (turn_amount)
+			target.body.head.rotation = \
+					lerp_angle(original_angle-turn_amount, original_angle, angle_progress)
+			if angle_progress >= 1.0:
+				angle_progress = 0.0
+				state_changed.emit(guard_state)
 
 ## Called when the state is made active
 func _enter(args:={}) -> void:
