@@ -20,6 +20,8 @@ extends State
 
 ## The global coordinates of the point that must be investigated
 var investigate_target: Vector2
+## Normal vector indicating the last direction the target was known to be moving.
+var investigate_target_last_dir: Vector2
 
 ## State equivalent of _process().  Only called when state is active
 func _update(_delta: float) -> void:
@@ -46,6 +48,7 @@ func _set_target(new_value) -> void:
 func nav_update() -> void:
 	# if the investigate target has been reached
 	if nav_agent.is_navigation_finished():
+		target.face_towards(investigate_target_last_dir)
 		state_changed.emit(scanning_state)
 		return
 
@@ -61,6 +64,10 @@ func _enter(args:={}) -> void:
 		nav_timer.timeout.connect(nav_update)
 	else:
 		push_error("WARNING: investigate_target is either unspecified or null")
+	if args.has("investigate_target_last_dir"):
+		investigate_target_last_dir = investigate_target_last_dir
+	else: 
+		push_error("WARNING: investigate_target_last_dir is unspecified")
 
 ## Called before state is made inactive
 func _exit() -> void:

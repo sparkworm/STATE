@@ -32,7 +32,9 @@ func _set_target(new_value) -> void:
 ## State equivalent of _process().  Only called when state is active
 func _update(_delta: float) -> void:
 	if not los_check.check_line_of_sight(target, pursue_target):
-		state_changed.emit(investigate_state, {"investigate_target":pursue_target.global_position})
+		state_changed.emit(investigate_state, {
+				"investigate_target":pursue_target.global_position,
+				"investigate_target_last_dir": pursue_target.velocity.normalized()})
 	# if there is line of sight and distance is less than attack distance
 	elif pursue_target.global_position.distance_to(target.global_position) < attack_range:
 		state_changed.emit(attack_state, {"attack_target":pursue_target})
