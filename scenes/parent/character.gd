@@ -127,7 +127,7 @@ func drop_item() -> void:
 func take_hit(hit_data: BulletHitResource) -> void:
 	var damage: float = hit_data.bullet_damage
 	var direction := hit_data.bullet_dir
-	print(character_name, " took ", damage, " damage!")
+	#print(character_name, " took ", damage, " damage!")
 	cpt_health.take_damage(damage)
 	if direction == Vector2.ZERO:
 		direction = Vector2.from_angle(randf_range(0,2*PI))

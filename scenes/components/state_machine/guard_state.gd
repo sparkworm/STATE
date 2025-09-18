@@ -51,7 +51,6 @@ func player_in_vision(body: Node2D) -> void:
 			state_changed.emit(pursue_state, {"pursue_target":body})
 
 func sound_heard(body: Area2D) -> void:
-	print("sound heard: ", body)
 	if not body is SoundEmission:
 		print("Areas must be fucked up, because body is not SoundEmission")
 		return
