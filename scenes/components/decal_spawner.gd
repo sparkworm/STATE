@@ -35,8 +35,8 @@ func spawn_decals(direction := Vector2.ZERO) -> void:
 			angle = direction.angle() + randf_range(-spread, spread)
 		if randf() < reverse_direction_chance:
 			angle += PI
-		var force: float = decal_launch_velocity \
-				+ randf_range(-launch_velocity_variation, launch_velocity_variation)
+		#var force: float = decal_launch_velocity \
+				#+ randf_range(-launch_velocity_variation, launch_velocity_variation)
 		#transport.apply_impulse(Vector2.from_angle(angle) * decal_launch_velocity)
 		transport.decal = decal_scene.instantiate()
 		transport.decal.pick_random_frame()

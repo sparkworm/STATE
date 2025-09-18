@@ -6,6 +6,9 @@ extends State
 ## The maximum distance the enemy can be for the guard to initiate an attack.  Any further and
 ## the guard will merely pursue
 @export var attack_distance: float = 200
+## Used to make target fire than the maximum possible speed of the weapon, if the weapon can be 
+## spammed particularly quickly.
+@export var attack_time_override: float = 0.25
 
 @export_category("Other States")
 ## Entered if enemy goes out of range
@@ -21,6 +24,15 @@ var attack_target: Character = null
 ## The weapon held by target.
 ## NOTE: if there are to be other weapon types this should be revised
 var weapon_held: WieldableGun
+## Time until the target will try to pull the trigger again.  Target is still restricted by the 
+## speed of the weapon.
+var attack_timer: Timer
+
+func _ready() -> void:
+	attack_timer = Timer.new()
+	attack_timer.one_shot = true
+	attack_timer.wait_time = attack_time_override
+	add_child(attack_timer)
 
 func _set_target(new_value) -> void:
 	super._set_target(new_value)
@@ -39,8 +51,9 @@ func _update(_delta: float) -> void:
 		state_changed.emit(pursue_state, {"pursue_target":attack_target})
 	target.face_towards(attack_target.global_position)
 	## TODO: Add functionality for fully-automatic weapons
-	if weapon_held.can_use():
+	if weapon_held.can_use() and attack_timer.is_stopped():
 		weapon_held._start_use()
+		attack_timer.start()
 
 
 ## State equivalent of _physics_process().  Only called when state is active

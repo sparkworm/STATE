@@ -27,7 +27,7 @@ func _ready() -> void:
 	var darken_tween: Tween = get_tree().create_tween()
 	# randomize color
 	var true_final_color = Utils.apply_variation(final_color, color_variation)
-	darken_tween.tween_property(self, "modulate", final_color, darkening_time)
+	darken_tween.tween_property(self, "modulate", true_final_color, darkening_time)
 	# set initial scale
 	scale = start_scale
 	# create tween for scaling

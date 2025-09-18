@@ -125,7 +125,7 @@ func drop_item() -> void:
 	set_item_held(null)
 
 func take_hit(hit_data: BulletHitResource) -> void:
-	var damage: int = hit_data.bullet_damage
+	var damage: float = hit_data.bullet_damage
 	var direction := hit_data.bullet_dir
 	print(character_name, " took ", damage, " damage!")
 	cpt_health.take_damage(damage)

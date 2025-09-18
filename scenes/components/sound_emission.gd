@@ -11,9 +11,9 @@ var kill_on_detect := false
 
 ## Called before SoundEmission is added to the SceneTree.  Should only be called if this is meant
 ## to be temporary sound emission
-func emit_temporary_sound(range) -> void:
+func emit_temporary_sound(dist) -> void:
 	kill_on_detect = true
-	radius = range
+	radius = dist
 	emit()
 
 func _ready() -> void:
@@ -26,9 +26,9 @@ func _ready() -> void:
 
 ## Creates CircleShape and sets its radius
 ## NOTE: likely needs to be called after _ready()
-func set_radius(radius: float) -> void:
+func set_radius(distance: float) -> void:
 	var circle_shape := CircleShape2D.new()
-	circle_shape.radius = radius
+	circle_shape.radius = distance
 	collision_shape_2d.shape = circle_shape
 
 func emit() -> void:

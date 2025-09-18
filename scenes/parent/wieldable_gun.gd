@@ -1,6 +1,8 @@
 class_name WieldableGun
 extends Wieldable
 
+## TODO: make ejected magazines enter the game world
+@warning_ignore("unused_signal")
 signal magazine_ejected(mag: Magazine)
 
 ## The weapon will continually fire only if full_auto==true

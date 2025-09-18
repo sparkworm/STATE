@@ -2,7 +2,7 @@
 class_name BulletHitResource
 extends Resource
 
-var bullet_damage: int
+var bullet_damage: float
 ## The direction the bullet was travelling in prior to hitting the target
 var bullet_dir: Vector2
 ## The point of contact in global coordinates
@@ -10,7 +10,7 @@ var collision_point: Vector2
 ## The normal vector of the collision
 var collision_normal: Vector2
 
-func _init(damage: int, dir: Vector2, col_point: Vector2, col_normal: Vector2) -> void:
+func _init(damage: float, dir: Vector2, col_point: Vector2, col_normal: Vector2) -> void:
 	bullet_damage = damage
 	bullet_dir = dir
 	collision_point = col_point

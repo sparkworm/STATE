@@ -71,7 +71,7 @@ func _physics_update(delta: float) -> void:
 				state_changed.emit(guard_state)
 
 ## Called when the state is made active
-func _enter(args:={}) -> void:
+func _enter(_args:={}) -> void:
 	# tween head's rotation
 	original_angle = target.body.torso.rotation
 	#var rot1: float = angle_difference()

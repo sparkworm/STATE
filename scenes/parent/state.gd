@@ -4,6 +4,7 @@ extends Node
 
 ## Called with a reference of a specific state to change to that state
 ## NOTE: This must never be called if the state is inactive.
+@warning_ignore("unused_signal")
 signal state_changed(new_state: State)
 
 ## The object that the state machine is meant to control
@@ -21,7 +22,7 @@ func _set_target(new_value: Node) -> void:
 	target = new_value
 
 ## Called when the state is made active
-func _enter(args:={}) -> void:
+func _enter(_args:={}) -> void:
 	pass
 
 ## Called before state is made inactive

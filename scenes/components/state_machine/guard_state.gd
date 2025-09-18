@@ -58,7 +58,7 @@ func sound_heard(body: Area2D) -> void:
 	state_changed.emit(investigate_state, {"investigate_target": body.global_position})
 
 ## Called when the state is made active
-func _enter(args:={}) -> void:
+func _enter(_args:={}) -> void:
 	#vision_cone.body_entered.connect(body_entered_vision)
 	#target.body.head.rotation = target.body.torso.rotation
 	sound_detector.sound_detected.connect(sound_heard)
