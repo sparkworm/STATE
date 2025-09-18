@@ -20,6 +20,8 @@ extends State
 
 ## The global coordinates of the point that must be investigated
 var investigate_target: Vector2
+## Is true if the player was "spotted" and the target knows which way they were headed
+var known_last_dir := false
 ## Normal vector indicating the last direction the target was known to be moving.
 var investigate_target_last_dir: Vector2
 
@@ -48,7 +50,8 @@ func _set_target(new_value) -> void:
 func nav_update() -> void:
 	# if the investigate target has been reached
 	if nav_agent.is_navigation_finished():
-		target.face_towards(investigate_target_last_dir)
+		if known_last_dir:
+			target.face_towards(investigate_target_last_dir)
 		state_changed.emit(scanning_state)
 		return
 
@@ -65,9 +68,10 @@ func _enter(args:={}) -> void:
 	else:
 		push_error("WARNING: investigate_target is either unspecified or null")
 	if args.has("investigate_target_last_dir"):
+		known_last_dir = true
 		investigate_target_last_dir = investigate_target_last_dir
 	else: 
-		push_error("WARNING: investigate_target_last_dir is unspecified")
+		known_last_dir = false
 
 ## Called before state is made inactive
 func _exit() -> void:

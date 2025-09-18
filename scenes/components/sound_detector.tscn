@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5hlndy15fs0n"]
+
+[ext_resource type="Script" uid="uid://3uxkjf4skm8o" path="res://scenes/components/sound_detector.gd" id="1_64yst"]
+
+[node name="SoundDetector" type="Area2D"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_64yst")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(1, 0, 0, 1, -1, 0, 0, -1)

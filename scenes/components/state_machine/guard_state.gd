@@ -8,6 +8,8 @@ extends State
 @export var vision_cone: Area2D
 ## A raycast for testing if there is line of sight with a given character
 @export var los_check: LineOfSightCheck
+
+@export var sound_detector: SoundDetector
 ## The maximum distance the enemy can be for the guard to initiate an attack.  Any further and
 ## the guard will merely pursue
 @export var attack_distance: float = 200
@@ -17,6 +19,8 @@ extends State
 @export var pursue_state: State
 ## State to switch to when spotted enemy is within attack range
 @export var attack_state: State
+## State to switch to when a sound is heard
+@export var investigate_state: State
 
 var enemy_is_in_vision_cone: bool = false
 
@@ -46,13 +50,20 @@ func player_in_vision(body: Node2D) -> void:
 			# WARNING, passing a greater number of signal parameters than specified
 			state_changed.emit(pursue_state, {"pursue_target":body})
 
+func sound_heard(body: Area2D) -> void:
+	print("sound heard: ", body)
+	if not body is SoundEmission:
+		print("Areas must be fucked up, because body is not SoundEmission")
+		return
+	state_changed.emit(investigate_state, {"investigate_target": body.global_position})
+
 ## Called when the state is made active
 func _enter(args:={}) -> void:
 	#vision_cone.body_entered.connect(body_entered_vision)
 	#target.body.head.rotation = target.body.torso.rotation
-	pass
+	sound_detector.sound_detected.connect(sound_heard)
 
 ## Called before state is made inactive
 func _exit() -> void:
 	#vision_cone.body_entered.disconnect(body_entered_vision)
-	pass
+	sound_detector.sound_detected.disconnect(sound_heard)

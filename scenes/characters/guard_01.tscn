@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjkq64ugh8t4k"]
+[gd_scene load_steps=14 format=3 uid="uid://cjkq64ugh8t4k"]
 
 [ext_resource type="PackedScene" uid="uid://bou5t0p158o7h" path="res://scenes/parent/character.tscn" id="1_367j4"]
 [ext_resource type="Texture2D" uid="uid://drgyodho8wjm6" path="res://textures/character/shoulders_1.png" id="2_2gffd"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dymb8c6bx25oj" path="res://scenes/components/line_of_sight_check.tscn" id="3_j2y55"]
 [ext_resource type="Texture2D" uid="uid://dgey3cy1dkivx" path="res://textures/character/arms_1.png" id="3_tyweb"]
 [ext_resource type="Texture2D" uid="uid://d0gk2kblt6qpi" path="res://textures/character/head_1.png" id="4_5a511"]
+[ext_resource type="PackedScene" uid="uid://b5hlndy15fs0n" path="res://scenes/components/sound_detector.tscn" id="4_7g2o4"]
 [ext_resource type="Script" uid="uid://c2hr3xp4wr5mq" path="res://scenes/components/state_machine/state_machine.gd" id="5_tyweb"]
 [ext_resource type="PackedScene" uid="uid://pw1f8os8614a" path="res://scenes/components/state_machine/guard_state.tscn" id="7_4jkte"]
 [ext_resource type="PackedScene" uid="uid://bg0ebho2ksfjr" path="res://scenes/components/state_machine/pursue_state.tscn" id="8_j2y55"]
@@ -25,6 +26,9 @@ path_desired_distance = 4.0
 target_desired_distance = 4.0
 
 [node name="LineOfSightCheck" parent="." index="3" instance=ExtResource("3_j2y55")]
+
+[node name="SoundDetector" parent="." index="4" instance=ExtResource("4_7g2o4")]
+monitoring = false
 
 [node name="Torso" parent="Body" index="1"]
 texture = ExtResource("2_2gffd")
@@ -46,16 +50,18 @@ collision_mask = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/Head/VisionCone" index="0"]
 polygon = PackedVector2Array(0, 0, 200, -75, 225, 0, 200, 75)
 
-[node name="Controller" parent="." index="7" node_paths=PackedStringArray("active_state", "target")]
+[node name="Controller" parent="." index="8" node_paths=PackedStringArray("active_state", "target")]
 script = ExtResource("5_tyweb")
 active_state = NodePath("GuardState")
 target = NodePath("..")
 
-[node name="GuardState" parent="Controller" index="0" node_paths=PackedStringArray("vision_cone", "los_check", "pursue_state", "attack_state") instance=ExtResource("7_4jkte")]
+[node name="GuardState" parent="Controller" index="0" node_paths=PackedStringArray("vision_cone", "los_check", "sound_detector", "pursue_state", "attack_state", "investigate_state") instance=ExtResource("7_4jkte")]
 vision_cone = NodePath("../../Body/Head/VisionCone")
 los_check = NodePath("../../LineOfSightCheck")
+sound_detector = NodePath("../../SoundDetector")
 pursue_state = NodePath("../PursueState")
 attack_state = NodePath("../AttackState")
+investigate_state = NodePath("../InvestigateState")
 
 [node name="PursueState" parent="Controller" index="1" node_paths=PackedStringArray("los_check", "nav_agent", "nav_timer", "attack_state", "investigate_state") instance=ExtResource("8_j2y55")]
 los_check = NodePath("../../LineOfSightCheck")
