@@ -23,6 +23,9 @@ signal magazine_ejected(mag: Magazine)
 		= preload("res://scenes/effects/fire_particles.tscn")
 
 @onready var projectile_spawner: ProjectileSpawner = $ProjectileSpawner
+## Node that creates a collision area representing the area from which this WieldableGun can be
+## heard
+@onready var sound_emission: SoundEmission = $SoundEmission
 
 ## if this is true, the weapon will spawn with a full mag.  This is true by default, but will
 ## be set false for weapons that are picked up that have been dropped previously.
@@ -43,6 +46,7 @@ func _continue_use() -> void:
 
 ## Makes WieldableGun fire its projectile.  Should only be called if can_use() is true
 func fire() -> void:
+	sound_emission.emit()
 	# spawn projectile
 	var rot: Vector2 = Vector2.from_angle(get_global_transform().get_rotation())
 	proj_spawner.spawn_projectile(rot)

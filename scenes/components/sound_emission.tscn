@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhwg0hxxb0t7l"]
+
+[ext_resource type="Script" uid="uid://dgi04fse8tacm" path="res://scenes/components/sound_emission.gd" id="1_r8t2w"]
+
+[node name="SoundEmission" type="Area2D"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_r8t2w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="EmissionTimer" type="Timer" parent="."]

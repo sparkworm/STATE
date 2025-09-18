@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c58txqxqr8dq5"]
+[gd_scene load_steps=6 format=3 uid="uid://c58txqxqr8dq5"]
 
 [ext_resource type="Script" uid="uid://bjlllyklexkiy" path="res://scenes/parent/wieldable_gun.gd" id="1_gdnv4"]
 [ext_resource type="PackedScene" uid="uid://bfo6vtny5gu3" path="res://scenes/components/projectile_spawner.tscn" id="2_n4qx1"]
 [ext_resource type="PackedScene" uid="uid://bojnc2n83qeek" path="res://scenes/components/cpt_ammo.tscn" id="3_jirk3"]
 [ext_resource type="PackedScene" uid="uid://dalg4ggflt5ee" path="res://scenes/projectiles/bullet_projectile.tscn" id="3_wdvvu"]
+[ext_resource type="PackedScene" uid="uid://bhwg0hxxb0t7l" path="res://scenes/components/sound_emission.tscn" id="5_3hrcg"]
 
 [node name="WieldableGun" type="Node2D" node_paths=PackedStringArray("proj_spawner", "cpt_ammo", "fire_timer", "reload_timer")]
 script = ExtResource("1_gdnv4")
@@ -26,3 +27,6 @@ one_shot = true
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="SoundEmission" parent="." instance=ExtResource("5_3hrcg")]
+radius = 200.0
