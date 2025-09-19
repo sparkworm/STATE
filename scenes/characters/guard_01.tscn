@@ -24,6 +24,7 @@ wait_time = 0.1
 [node name="NavigationAgent" type="NavigationAgent2D" parent="." index="1"]
 path_desired_distance = 4.0
 target_desired_distance = 4.0
+avoidance_enabled = true
 
 [node name="LineOfSightCheck" parent="." index="3" instance=ExtResource("3_j2y55")]
 

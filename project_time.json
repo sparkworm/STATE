@@ -1,14 +1,14 @@
 {
-  "2D": 13499.0,
+  "2D": 14126.0,
   "3D": 0.0,
   "ASSETLIB": 28.0,
-  "GAME": 15943.0,
-  "SCRIPT": 74465.0,
-  "current_screen": "2D",
-  "external_time": 31740.0,
-  "idle_time": 217.0,
+  "GAME": 16917.0,
+  "SCRIPT": 75739.0,
+  "current_screen": "Script",
+  "external_time": 33219.0,
+  "idle_time": 881.0,
   "idle_time_out": 5.0,
-  "project_time": 103953.0,
+  "project_time": 106828.0,
   "rest_time_enabled": false,
   "rest_time_value": 15.0
 }

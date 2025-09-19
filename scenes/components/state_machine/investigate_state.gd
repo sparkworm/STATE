@@ -58,8 +58,15 @@ func nav_update() -> void:
 	var direction = (nav_agent.get_next_path_position() - target.global_position).normalized()
 	target.velocity = direction * investigate_speed
 
+func safe_velocity_calculated(safe_velocity: Vector2) -> void:
+	if safe_velocity != Vector2.ZERO:
+		print(safe_velocity)
+		target.velocity = safe_velocity# * investigate_speed
+
+
 ## Called when the state is made active
 func _enter(args:={}) -> void:
+	nav_agent.velocity_computed.connect(safe_velocity_calculated)
 	if args.has("investigate_target") and args["investigate_target"] != null:
 		investigate_target = args["investigate_target"]
 		nav_agent.target_position = investigate_target
@@ -70,9 +77,10 @@ func _enter(args:={}) -> void:
 	if args.has("investigate_target_last_dir"):
 		known_last_dir = true
 		investigate_target_last_dir = investigate_target_last_dir
-	else: 
+	else:
 		known_last_dir = false
 
 ## Called before state is made inactive
 func _exit() -> void:
 	nav_timer.timeout.disconnect(nav_update)
+	nav_agent.velocity_computed.disconnect(safe_velocity_calculated)
