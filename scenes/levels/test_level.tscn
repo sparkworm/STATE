@@ -80,3 +80,6 @@ rotation = 1.94912
 [node name="Guard02" parent="Characters" index="6" instance=ExtResource("5_48ne7")]
 position = Vector2(-107, 73)
 rotation = -0.294992
+
+[node name="Camera" parent="." index="9"]
+zoom = Vector2(2, 2)

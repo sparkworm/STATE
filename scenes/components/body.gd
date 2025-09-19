@@ -32,6 +32,22 @@ func head_and_torso_look_towards(global_coords: Vector2) -> void:
 	torso.look_at(global_coords)
 	head.look_at(global_coords)
 
+## Move the head to look towards an angle.  The head will not turn further than it is allowed by
+## max_head_look_angle. [br] [br]
+## This can be useful if the torso is locked and cannot rotate (such as when running or guarding)
+func head_look_in_dir(dir: float) -> void:
+	head.rotation = dir
+	var ang_diff: float = angle_difference(torso.rotation, head.rotation)
+	if ang_diff > 0 and ang_diff > max_head_look_angle:
+		head.rotation = max_head_look_angle
+	elif ang_diff < 0 and -ang_diff > max_head_look_angle:
+		head.rotation = -max_head_look_angle
+
+## Sets the rotation of the head and torso to the specified direction
+func head_and_torso_look_in_dir(dir: float) -> void:
+	torso.rotation = dir
+	head.rotation = dir
+
 ## Returns the item that is being held in item_holder
 func get_item_held() -> Wieldable:
 	# for potential debugging purposes

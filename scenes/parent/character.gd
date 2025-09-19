@@ -27,16 +27,24 @@ extends CharacterBody2D
 @onready var body: Body = %Body
 
 func _ready() -> void:
+	fix_starting_rotation()
+	
 	# set starting item
 	if starting_item != null:
 		body.set_item_held(starting_item.instantiate())
 
 	cpt_health.health_depleted.connect(die)
-
+	
 	# DEBUG
 	# For testing purposes, give a magazine for a glock
 	inventory.add_mag(Globals.Wieldables.GLOCK17, Magazine.new(Globals.Wieldables.GLOCK17, 17))
 	inventory.add_mag(Globals.Wieldables.GLOCK17, Magazine.new(Globals.Wieldables.GLOCK17, 17))
+
+## Since it is the head and torso that rotate, any rotation of the Character itself must be 
+## transferred to the actual parts that do rotate
+func fix_starting_rotation() -> void:
+	body.head_and_torso_look_in_dir(rotation)
+	rotation = 0.0
 
 ## Returns the item currently held
 func get_item_held() -> Wieldable:
@@ -47,9 +55,13 @@ func get_item_held() -> Wieldable:
 func set_item_held(new_item: Wieldable) -> void:
 	body.set_item_held(new_item)
 
-## Makes the head and boddy face dir, which should be in global coords
+## Makes the head and boddy face dir, which should be a point in global coords
 func face_towards(dir: Vector2) -> void:
 	body.head_and_torso_look_towards(dir)
+	update_move_collision()
+
+func face_in_dir(dir: float) -> void:
+	body.head_and_torso_look_in_dir(dir)
 	update_move_collision()
 
 ## Moves the CollisionShape to match the rotation of the torso sprite

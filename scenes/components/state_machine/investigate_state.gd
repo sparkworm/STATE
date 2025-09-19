@@ -18,6 +18,8 @@ extends State
 @export var pursue_state: State
 @export var scanning_state: State
 
+## The the distance to investigate_target there was when this state was entered
+var start_dist_to_inv_target: float
 ## The global coordinates of the point that must be investigated
 var investigate_target: Vector2
 ## Is true if the player was "spotted" and the target knows which way they were headed
@@ -38,8 +40,14 @@ func _physics_update(_delta: float) -> void:
 	target.move_and_slide()
 	# Only look towards investigate target if it is a bit away.  Prevents a 180 if
 	# investigate_target is overshot
-	if investigate_target.distance_to(target.global_position) > 10:
-		target.face_towards(investigate_target)
+	if dist_to_inv_target() > 10:
+		if known_last_dir:
+			var dir_to_inv_target = (investigate_target - target.global_position).normalized()
+			target.face_in_dir(lerp(dir_to_inv_target, investigate_target_last_dir, 
+					1.0-(dist_to_inv_target() / start_dist_to_inv_target)).angle())
+			
+		else:
+			target.face_towards(investigate_target)
 
 func _set_target(new_value) -> void:
 	super._set_target(new_value)
@@ -50,8 +58,8 @@ func _set_target(new_value) -> void:
 func nav_update() -> void:
 	# if the investigate target has been reached
 	if nav_agent.is_navigation_finished():
-		if known_last_dir:
-			target.face_towards(investigate_target_last_dir)
+		#if known_last_dir:
+			#target.face_towards(investigate_target_last_dir)
 		state_changed.emit(scanning_state)
 		return
 
@@ -60,9 +68,12 @@ func nav_update() -> void:
 
 func safe_velocity_calculated(safe_velocity: Vector2) -> void:
 	if safe_velocity != Vector2.ZERO:
-		print(safe_velocity)
+		print("safe velocity: ", safe_velocity)
 		target.velocity = safe_velocity# * investigate_speed
 
+
+func dist_to_inv_target() -> float:
+	return target.global_position.distance_to(investigate_target)
 
 ## Called when the state is made active
 func _enter(args:={}) -> void:
@@ -70,13 +81,15 @@ func _enter(args:={}) -> void:
 	if args.has("investigate_target") and args["investigate_target"] != null:
 		investigate_target = args["investigate_target"]
 		nav_agent.target_position = investigate_target
+		start_dist_to_inv_target = dist_to_inv_target()
 		nav_timer.start()
 		nav_timer.timeout.connect(nav_update)
+		nav_update()
 	else:
 		push_error("WARNING: investigate_target is either unspecified or null")
 	if args.has("investigate_target_last_dir"):
 		known_last_dir = true
-		investigate_target_last_dir = investigate_target_last_dir
+		investigate_target_last_dir = args["investigate_target_last_dir"]
 	else:
 		known_last_dir = false
 
