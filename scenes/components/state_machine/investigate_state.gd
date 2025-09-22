@@ -9,6 +9,8 @@ extends State
 @export var los_check: LineOfSightCheck
 ## The navigator for target
 @export var nav_agent: NavigationAgent2D
+## Area for applying avoidance forces
+@export var avoidance_area: AvoidanceArea
 ## Calls an update to navigation on every timeout
 @export var nav_timer: Timer
 ## The speed the target will travel at to reach in point of investigation
@@ -65,11 +67,13 @@ func nav_update() -> void:
 
 	var direction = (nav_agent.get_next_path_position() - target.global_position).normalized()
 	target.velocity = direction * investigate_speed
+	target.velocity += avoidance_area.calculate_repulsion()
 
 func safe_velocity_calculated(safe_velocity: Vector2) -> void:
 	if safe_velocity != Vector2.ZERO:
-		print("safe velocity: ", safe_velocity)
-		target.velocity = safe_velocity# * investigate_speed
+		pass
+		#print("safe velocity: ", safe_velocity)
+		#target.velocity = safe_velocity# * investigate_speed
 
 
 func dist_to_inv_target() -> float:
@@ -77,7 +81,7 @@ func dist_to_inv_target() -> float:
 
 ## Called when the state is made active
 func _enter(args:={}) -> void:
-	nav_agent.velocity_computed.connect(safe_velocity_calculated)
+	#nav_agent.velocity_computed.connect(safe_velocity_calculated)
 	if args.has("investigate_target") and args["investigate_target"] != null:
 		investigate_target = args["investigate_target"]
 		nav_agent.target_position = investigate_target
@@ -96,4 +100,4 @@ func _enter(args:={}) -> void:
 ## Called before state is made inactive
 func _exit() -> void:
 	nav_timer.timeout.disconnect(nav_update)
-	nav_agent.velocity_computed.disconnect(safe_velocity_calculated)
+	#nav_agent.velocity_computed.disconnect(safe_velocity_calculated)

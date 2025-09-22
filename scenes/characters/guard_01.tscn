@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://cjkq64ugh8t4k"]
+[gd_scene load_steps=16 format=3 uid="uid://cjkq64ugh8t4k"]
 
 [ext_resource type="PackedScene" uid="uid://bou5t0p158o7h" path="res://scenes/parent/character.tscn" id="1_367j4"]
 [ext_resource type="Texture2D" uid="uid://drgyodho8wjm6" path="res://textures/character/shoulders_1.png" id="2_2gffd"]
 [ext_resource type="PackedScene" uid="uid://c7eup1hsit4r" path="res://scenes/wieldable/glock_17.tscn" id="2_5a511"]
 [ext_resource type="PackedScene" uid="uid://dymb8c6bx25oj" path="res://scenes/components/line_of_sight_check.tscn" id="3_j2y55"]
 [ext_resource type="Texture2D" uid="uid://dgey3cy1dkivx" path="res://textures/character/arms_1.png" id="3_tyweb"]
+[ext_resource type="PackedScene" uid="uid://conx4q12a5sjb" path="res://scenes/components/avoidance_area.tscn" id="3_xce6l"]
 [ext_resource type="Texture2D" uid="uid://d0gk2kblt6qpi" path="res://textures/character/head_1.png" id="4_5a511"]
 [ext_resource type="PackedScene" uid="uid://b5hlndy15fs0n" path="res://scenes/components/sound_detector.tscn" id="4_7g2o4"]
 [ext_resource type="Script" uid="uid://c2hr3xp4wr5mq" path="res://scenes/components/state_machine/state_machine.gd" id="5_tyweb"]
@@ -13,6 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://cg8i0i5xnn4ss" path="res://scenes/components/state_machine/attack_state.tscn" id="9_jh88t"]
 [ext_resource type="PackedScene" uid="uid://b8lfamyxupwxt" path="res://scenes/components/state_machine/investigate_state.tscn" id="11_jh88t"]
 [ext_resource type="PackedScene" uid="uid://ckryfj374koy0" path="res://scenes/components/state_machine/scanning_state.tscn" id="12_ibshv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w5xus"]
+radius = 20.0
 
 [node name="Guard01" groups=["enemy"] instance=ExtResource("1_367j4")]
 character_name = "Guard"
@@ -25,10 +29,19 @@ wait_time = 0.1
 path_desired_distance = 4.0
 target_desired_distance = 4.0
 avoidance_enabled = true
+radius = 12.0
+neighbor_distance = 100.0
+max_speed = 50.0
+debug_enabled = true
 
-[node name="LineOfSightCheck" parent="." index="3" instance=ExtResource("3_j2y55")]
+[node name="AvoidanceArea" parent="." index="2" instance=ExtResource("3_xce6l")]
 
-[node name="SoundDetector" parent="." index="4" instance=ExtResource("4_7g2o4")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AvoidanceArea" index="0"]
+shape = SubResource("CircleShape2D_w5xus")
+
+[node name="LineOfSightCheck" parent="." index="4" instance=ExtResource("3_j2y55")]
+
+[node name="SoundDetector" parent="." index="5" instance=ExtResource("4_7g2o4")]
 monitoring = false
 
 [node name="Torso" parent="Body" index="1"]
@@ -51,7 +64,7 @@ collision_mask = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/Head/VisionCone" index="0"]
 polygon = PackedVector2Array(0, 0, 200, -75, 225, 0, 200, 75)
 
-[node name="Controller" parent="." index="8" node_paths=PackedStringArray("active_state", "target")]
+[node name="Controller" parent="." index="9" node_paths=PackedStringArray("active_state", "target")]
 script = ExtResource("5_tyweb")
 active_state = NodePath("GuardState")
 target = NodePath("..")
@@ -64,9 +77,10 @@ pursue_state = NodePath("../PursueState")
 attack_state = NodePath("../AttackState")
 investigate_state = NodePath("../InvestigateState")
 
-[node name="PursueState" parent="Controller" index="1" node_paths=PackedStringArray("los_check", "nav_agent", "nav_timer", "attack_state", "investigate_state") instance=ExtResource("8_j2y55")]
+[node name="PursueState" parent="Controller" index="1" node_paths=PackedStringArray("los_check", "nav_agent", "avoidance_area", "nav_timer", "attack_state", "investigate_state") instance=ExtResource("8_j2y55")]
 los_check = NodePath("../../LineOfSightCheck")
 nav_agent = NodePath("../../NavigationAgent")
+avoidance_area = NodePath("../../AvoidanceArea")
 nav_timer = NodePath("../../NavTimer")
 attack_state = NodePath("../AttackState")
 investigate_state = NodePath("../InvestigateState")
@@ -77,10 +91,11 @@ pursue_state = NodePath("../PursueState")
 investigate_state = NodePath("../InvestigateState")
 guard_state = NodePath("../GuardState")
 
-[node name="InvestigateState" parent="Controller" index="3" node_paths=PackedStringArray("vision_cone", "los_check", "nav_agent", "nav_timer", "pursue_state", "scanning_state") instance=ExtResource("11_jh88t")]
+[node name="InvestigateState" parent="Controller" index="3" node_paths=PackedStringArray("vision_cone", "los_check", "nav_agent", "avoidance_area", "nav_timer", "pursue_state", "scanning_state") instance=ExtResource("11_jh88t")]
 vision_cone = NodePath("../../Body/Head/VisionCone")
 los_check = NodePath("../../LineOfSightCheck")
 nav_agent = NodePath("../../NavigationAgent")
+avoidance_area = NodePath("../../AvoidanceArea")
 nav_timer = NodePath("../../NavTimer")
 pursue_state = NodePath("../PursueState")
 scanning_state = NodePath("../ScanningState")

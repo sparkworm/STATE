@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dgi04fse8tacm" path="res://scenes/components/sound_emission.gd" id="1_r8t2w"]
 
 [node name="SoundEmission" type="Area2D"]
+visible = false
 collision_layer = 0
 collision_mask = 32
 monitorable = false

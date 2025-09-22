@@ -71,15 +71,16 @@ rotation = 1.57079
 position = Vector2(-74, -38)
 
 [node name="TestDummy4" parent="Characters" index="4" instance=ExtResource("4_v45ci")]
-position = Vector2(-72, 9)
+position = Vector2(97, 15)
+rotation = 1.57178
 
 [node name="Guard01" parent="Characters" index="5" instance=ExtResource("5_48ne7")]
 position = Vector2(117, -17)
 rotation = 1.94912
 
 [node name="Guard02" parent="Characters" index="6" instance=ExtResource("5_48ne7")]
-position = Vector2(-107, 73)
-rotation = -0.294992
+position = Vector2(-195, -23)
+rotation = 1.76566
 
 [node name="Camera" parent="." index="9"]
 zoom = Vector2(2, 2)

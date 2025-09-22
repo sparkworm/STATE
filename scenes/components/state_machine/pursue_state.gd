@@ -7,6 +7,8 @@ extends State
 @export var los_check: LineOfSightCheck
 ## The navigator for target
 @export var nav_agent: NavigationAgent2D
+## Area for applying avoidance forces
+@export var avoidance_area: AvoidanceArea
 ## Calls an update to navigation on every timeout
 @export var nav_timer: Timer
 ## The maximum distance the enemy can be for the guard to initiate an attack.  Any further and
@@ -55,6 +57,7 @@ func nav_update() -> void:
 
 	var direction = (nav_agent.get_next_path_position() - target.global_position).normalized()
 	target.velocity = direction * pursue_speed
+	target.velocity += avoidance_area.calculate_repulsion()
 
 ## Called when the state is made active
 func _enter(args:={}) -> void:
