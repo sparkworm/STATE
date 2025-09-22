@@ -10,6 +10,7 @@ var paused: bool = false
 func _ready() -> void:
 	MessageBus.scene_changed.connect(switch_scene)
 	MessageBus.pause_menu_toggled.connect(toggle_pause_menu)
+	MessageBus.level_restarted.connect(restart_level)
 	MessageBus.game_quit.connect(quit_game)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -36,6 +37,11 @@ func toggle_pause_menu() -> void:
 	else:
 		get_tree().paused = false
 		pause_menu.hide()
+
+## Reloads the current level
+func restart_level() -> void:
+	switch_scene(Globals.current_scene_idx)
+	MessageBus.pause_menu_toggled.emit()
 
 ## Should be used instead of locally calling get_tree().quit() since save
 ## functionality may eventually be added

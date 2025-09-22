@@ -7,6 +7,8 @@ extends Node
 signal scene_changed(new_scene: SceneAccess.IDX)
 ## Toggles both the paused state of the game and the visibility of the pause menu
 signal pause_menu_toggled()
+## Called to reload the current level
+signal level_restarted()
 ## Called to quit the game.  Should be used over get_tree().quit().
 signal game_quit()
 #endregion

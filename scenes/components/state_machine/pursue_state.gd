@@ -37,7 +37,7 @@ func _update(_delta: float) -> void:
 		state_changed.emit(investigate_state, {
 				"investigate_target":pursue_target.global_position,
 				"investigate_target_last_dir": pursue_target.velocity.normalized()})
-		print("last pursue_target velocity: ", pursue_target.velocity.normalized())
+		#print("last pursue_target velocity: ", pursue_target.velocity.normalized())
 	# if there is line of sight and distance is less than attack distance
 	elif pursue_target.global_position.distance_to(target.global_position) < attack_range:
 		state_changed.emit(attack_state, {"attack_target":pursue_target})
