@@ -48,13 +48,13 @@ func head_and_torso_look_in_dir(dir: float) -> void:
 	torso.rotation = dir
 	head.rotation = dir
 
-## Returns the item that is being held in item_holder
+## Returns the item that is being held in item_holder.  null if there is no item held
 func get_item_held() -> Wieldable:
 	# for potential debugging purposes
 	var child_count: int = item_holder.get_child_count()
 	if child_count < 1:
-		print("WARNING: no item held")
 		return null
+	# should never happen
 	elif child_count > 1:
 		print("WARNING: multiple items held: ", child_count)
 
