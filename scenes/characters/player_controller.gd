@@ -9,6 +9,7 @@ var move_dir: Vector2
 @export var cpt_velocity: VelocityComponent
 
 func _ready() -> void:
+	# make changes in player's inventory show on the HUD
 	player_inventory.inventory_changed.connect(MessageBus.update_hud.emit)
 
 func _physics_process(delta: float) -> void:

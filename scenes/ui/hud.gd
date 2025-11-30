@@ -11,6 +11,10 @@ func _ready() -> void:
 ## Updates HUD panel to display the most recent information on the weapon held, the amount of ammo
 ## therein, and the amount of ammo in inventory.
 func update_item_held_panel() -> void:
+	# BUG: There will be a crash when reloading the a level after the player has died relating to
+	# player somehow being null when the glock magazines are given.  Odd that it's only on restart
+	if player == null: 
+		return
 	#print("updating item held")
 	var txt: String = ""
 	var item_held: Wieldable = player.get_item_held()
