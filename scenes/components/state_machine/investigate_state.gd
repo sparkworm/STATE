@@ -45,9 +45,9 @@ func _physics_update(_delta: float) -> void:
 	if dist_to_inv_target() > 10:
 		if known_last_dir:
 			var dir_to_inv_target = (investigate_target - target.global_position).normalized()
-			target.face_in_dir(lerp(dir_to_inv_target, investigate_target_last_dir, 
+			target.face_in_dir(lerp(dir_to_inv_target, investigate_target_last_dir,
 					1.0-(dist_to_inv_target() / start_dist_to_inv_target)).angle())
-			
+
 		else:
 			target.face_towards(investigate_target)
 

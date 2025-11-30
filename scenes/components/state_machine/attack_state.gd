@@ -6,7 +6,7 @@ extends State
 ## The maximum distance the enemy can be for the guard to initiate an attack.  Any further and
 ## the guard will merely pursue
 @export var attack_distance: float = 200
-## Used to make target fire than the maximum possible speed of the weapon, if the weapon can be 
+## Used to make target fire than the maximum possible speed of the weapon, if the weapon can be
 ## spammed particularly quickly.
 @export var attack_time_override: float = 0.25
 
@@ -24,7 +24,7 @@ var attack_target: Character = null
 ## The weapon held by target.
 ## NOTE: if there are to be other weapon types this should be revised
 var weapon_held: WieldableGun
-## Time until the target will try to pull the trigger again.  Target is still restricted by the 
+## Time until the target will try to pull the trigger again.  Target is still restricted by the
 ## speed of the weapon.
 var attack_timer: Timer
 

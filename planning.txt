@@ -98,6 +98,34 @@ Weapon Breakdown:
 		-This prevents weapon from going ridiculously off course, because at some point the weapon
 		will move back faster than the recoil will offset it
 
+Dead bodies:
+	There exist several approaches to bodies.
+	Option 1:
+		Characters are animated falling over into a specific death pose.  There could exist multiple
+		death animations from which one could be chosen at random.
+		Pros:
+			Will look good.
+			With animations, elaborate deaths with sounds etc will be possible.
+		Cons:
+			Very time consuming on the art side of things
+	Option 2:
+		Characters will immediately snap into a death pose.  The death pose will be "randomly
+		generated" by taking multiple possible arm positions, multiple possible leg positions, etc.
+		and combining them to get a unique pose.
+		Pros:
+			Varied death positions
+			Less art required
+		Cons:
+			Could get odd looking death poses without much control of the final result
+			Less opportunity for elaborate deaths.
+	Option 3 (placeholder):
+		Characters will simply snap into a random death pose.
+		Pros:
+			Easiest to implement.
+			Easy control of what poses will actually look like.
+		Cons:
+			Won't look amazing.
+
 
 Level planning:
 	Levels:

@@ -10,6 +10,8 @@ extends CharacterBody2D
 @export var item_drop_force: float
 ## The scene that will be spawned when Character is hit.
 @export var blood_decal_scene: PackedScene = preload("res://scenes/effects/blood_decal.tscn")
+## The body that will be spawned when the character dies.
+@export var dead_body_scene: PackedScene = preload("res://scenes/effects/dead_body_01.tscn")
 
 ## The inventory of the character, which contains all ammo
 @onready var inventory: CharacterInventory = $Inventory
@@ -28,19 +30,19 @@ extends CharacterBody2D
 
 func _ready() -> void:
 	fix_starting_rotation()
-	
+
 	# set starting item
 	if starting_item != null:
 		body.set_item_held(starting_item.instantiate())
 
 	cpt_health.health_depleted.connect(die)
-	
+
 	# DEBUG
 	# For testing purposes, give a magazine for a glock
 	inventory.add_mag(Globals.Wieldables.GLOCK17, Magazine.new(Globals.Wieldables.GLOCK17, 17))
 	inventory.add_mag(Globals.Wieldables.GLOCK17, Magazine.new(Globals.Wieldables.GLOCK17, 17))
 
-## Since it is the head and torso that rotate, any rotation of the Character itself must be 
+## Since it is the head and torso that rotate, any rotation of the Character itself must be
 ## transferred to the actual parts that do rotate
 func fix_starting_rotation() -> void:
 	body.head_and_torso_look_in_dir(rotation)
@@ -140,7 +142,6 @@ func take_hit(hit_data: BulletHitResource) -> void:
 	var damage: float = hit_data.bullet_damage
 	var direction := hit_data.bullet_dir
 	#print(character_name, " took ", damage, " damage!")
-	cpt_health.take_damage(damage)
 	if direction == Vector2.ZERO:
 		direction = Vector2.from_angle(randf_range(0,2*PI))
 	decal_spawner.spawn_decals(direction)
@@ -153,6 +154,7 @@ func take_hit(hit_data: BulletHitResource) -> void:
 	#spurt_particles.rotation = (-direction).angle()
 	spurt_particles.rotation = hit_data.collision_normal.angle()
 	MessageBus.temporary_particles_spawned.emit(spurt_particles)
+	cpt_health.take_damage(damage)
 
 ## Spawns a floating text above character to indicate an action such as reloading or dialogue
 func spawn_floating_text(message: String, custom_time:=-1.0) -> void:
@@ -164,5 +166,10 @@ func spawn_floating_text(message: String, custom_time:=-1.0) -> void:
 
 ## Handles death of Character before finally calling queue_free()
 func die() -> void:
+	var dead_body: Node2D = dead_body_scene.instantiate()
+	# add to allow some initial rotation to correctly orient the sprite
+	dead_body.rotation += body.torso.rotation
+	dead_body.position = position
+	MessageBus.decal_spawned.emit(dead_body)
 	drop_item()
 	queue_free()
